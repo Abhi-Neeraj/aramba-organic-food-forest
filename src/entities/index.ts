@@ -137,3 +137,45 @@ export interface TrustBadges {
   /** @wixFieldType number */
   displayOrder?: number;
 }
+
+
+/**
+ * Collection ID: userroles
+ * Interface for UserRoles
+ */
+export interface UserRoles {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+  /** @wixFieldType text */
+  roleType?: string;
+  /** @wixFieldType text */
+  memberId?: string;
+  /** @wixFieldType boolean */
+  isActive?: boolean;
+  /** @wixFieldType date @format YYYY-MM-DD */
+  assignmentDate?: string;
+  /** @wixFieldType text */
+  permissionsSummary?: string;
+}
+
+
+/**
+ * Collection ID: userroles
+ * Interface for UserRoles
+ */
+export interface UserRoles {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+  /** @wixFieldType text */
+  roleType?: string;
+  /** @wixFieldType text */
+  memberId?: string;
+  /** @wixFieldType boolean */
+  isActive?: boolean;
+  /** @wixFieldType date @format YYYY-MM-DD */
+  assignmentDate?: string;
+  /** @wixFieldType text */
+  permissionsSummary?: string;
+}

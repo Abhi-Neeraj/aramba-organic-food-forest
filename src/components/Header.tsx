@@ -1,13 +1,21 @@
 import { Link } from 'react-router-dom';
-import { Search, MessageCircle } from 'lucide-react';
+import { Search, MessageCircle, LogIn } from 'lucide-react';
 import { MiniCart } from '@/wix-verticals/react-pages/react-router/routes/root';
 import { Button } from '@/components/ui/button';
+import { useAuthStore } from '@/stores/authStore';
 
 export default function Header() {
+  const { userRole, clearAuth } = useAuthStore();
+  const handleLogout = () => {
+    clearAuth();
+  };
+  
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent("Hi! I'm interested in your organic products. Can you help me?");
     window.open(`https://wa.me/918879543210?text=${message}`, '_blank');
   };
+
+
 
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-primary/10">
@@ -68,6 +76,32 @@ export default function Header() {
               <span className="hidden sm:inline">Chat</span>
             </Button>
 
+            {/* Auth Buttons */}
+            {userRole ? (
+              <div className="flex items-center space-x-2">
+                <Button asChild variant="outline" size="sm" className="border-primary/20">
+                  <Link to={`/dashboard/${userRole}`}>
+                    Dashboard
+                  </Link>
+                </Button>
+                <Button 
+                  onClick={handleLogout}
+                  variant="ghost" 
+                  size="sm"
+                  className="text-primary hover:bg-primary/5"
+                >
+                  Logout
+                </Button>
+              </div>
+            ) : (
+              <Button asChild size="sm" className="bg-primary hover:bg-primary/90">
+                <Link to="/login">
+                  <LogIn className="h-4 w-4 mr-2" />
+                  Sign In
+                </Link>
+              </Button>
+            )}
+
             {/* Mini Cart */}
             <MiniCart />
           </div>
@@ -100,6 +134,14 @@ export default function Header() {
             >
               Our Team
             </Link>
+            {!userRole && (
+              <Link 
+                to="/login" 
+                className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
+              >
+                Sign In
+              </Link>
+            )}
           </nav>
         </div>
       </div>

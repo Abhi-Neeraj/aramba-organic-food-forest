@@ -21,6 +21,11 @@ import HomePage from '@/components/pages/HomePage';
 import BlogPage from '@/components/pages/BlogPage';
 import BlogPostPage from '@/components/pages/BlogPostPage';
 import OurTeamPage from '@/components/pages/OurTeamPage';
+import LoginPage from '@/components/pages/LoginPage';
+import SignupPage from '@/components/pages/SignupPage';
+import CustomerDashboardPage from '@/components/pages/CustomerDashboardPage';
+import FarmerDashboardPage from '@/components/pages/FarmerDashboardPage';
+import AdminDashboardPage from '@/components/pages/AdminDashboardPage';
 import Layout from '@/components/Layout';
 
 // Main layout component that includes the scroll to top component and the layout component
@@ -96,6 +101,26 @@ const router = createBrowserRouter([
       {
         path: '/our-team',
         element: <OurTeamPage />,
+      },
+      {
+        path: '/login',
+        element: <LoginPage />,
+      },
+      {
+        path: '/signup/:role',
+        element: <SignupPage />,
+      },
+      {
+        path: '/dashboard/customer',
+        element: <CustomerDashboardPage />,
+      },
+      {
+        path: '/dashboard/farmer',
+        element: <FarmerDashboardPage />,
+      },
+      {
+        path: '/dashboard/admin',
+        element: <AdminDashboardPage />,
       },
       {
         path: "*",
