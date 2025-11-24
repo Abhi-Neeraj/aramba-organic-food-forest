@@ -2,6 +2,7 @@ import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 import { Cart as CartPrimitive } from '@wix/ecom/components';
+import { formatINR } from '@/lib/currency';
 
 /**
  * Root component for shopping cart functionality.
@@ -59,6 +60,7 @@ export interface CartTotalProps
 /**
  * Displays the cart subtotal price.
  * Shows the sum of all line items before taxes, shipping, and discounts.
+ * Formatted in Indian Rupees (INR).
  *
  * @component
  * @example
@@ -90,8 +92,14 @@ export const CartTotalsPrice = React.forwardRef<
       {...props}
       ref={ref}
       className={cn(cartTotalVariants({ variant, size }), className)}
+      asChild
     >
-      {props.children}
+      {({ formattedPrice }) => (
+        <div className={cn(cartTotalVariants({ variant, size }), className)}>
+          <span>Subtotal:</span>
+          <span>{formattedPrice}</span>
+        </div>
+      )}
     </CartPrimitive.Totals.Price>
   );
 });
@@ -105,6 +113,7 @@ export interface CartTotalDiscountProps
 /**
  * Displays cart discount amount (when coupons or promotions are applied).
  * Only shows when there are active discounts on the cart.
+ * Formatted in Indian Rupees (INR).
  *
  * @component
  * @example
@@ -130,8 +139,14 @@ export const CartTotalsDiscount = React.forwardRef<
       {...props}
       ref={ref}
       className={cn(cartTotalVariants({ variant, size }), className)}
+      asChild
     >
-      {props.children}
+      {({ formattedPrice }) => (
+        <div className={cn(cartTotalVariants({ variant, size }), className)}>
+          <span>Discount:</span>
+          <span>{formattedPrice}</span>
+        </div>
+      )}
     </CartPrimitive.Totals.Discount>
   );
 });
@@ -170,8 +185,14 @@ export const CartTotalsShipping = React.forwardRef<
       {...props}
       ref={ref}
       className={cn(cartTotalVariants({ variant, size }), className)}
+      asChild
     >
-      {props.children}
+      {({ formattedPrice }) => (
+        <div className={cn(cartTotalVariants({ variant, size }), className)}>
+          <span>Shipping:</span>
+          <span>{formattedPrice}</span>
+        </div>
+      )}
     </CartPrimitive.Totals.Shipping>
   );
 });
@@ -211,8 +232,14 @@ export const CartTotalsTax = React.forwardRef<
       {...props}
       ref={ref}
       className={cn(cartTotalVariants({ variant, size }), className)}
+      asChild
     >
-      {props.children}
+      {({ formattedPrice }) => (
+        <div className={cn(cartTotalVariants({ variant, size }), className)}>
+          <span>Tax:</span>
+          <span>{formattedPrice}</span>
+        </div>
+      )}
     </CartPrimitive.Totals.Tax>
   );
 });
@@ -252,8 +279,14 @@ export const CartTotalsTotal = React.forwardRef<
       {...props}
       ref={ref}
       className={cn(cartTotalVariants({ variant, size }), className)}
+      asChild
     >
-      {props.children}
+      {({ formattedPrice }) => (
+        <div className={cn(cartTotalVariants({ variant, size }), className)}>
+          <span>Total:</span>
+          <span>{formattedPrice}</span>
+        </div>
+      )}
     </CartPrimitive.Totals.Total>
   );
 });

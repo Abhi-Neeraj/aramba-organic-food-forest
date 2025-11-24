@@ -8,6 +8,7 @@ import { Image } from '@/components/ui/image';
 import { useState, useEffect } from 'react';
 import { BaseCrudService } from '@/integrations';
 import { Products, ProductCategories } from '@/entities';
+import { formatINR } from '@/lib/currency';
 
 export default function HomePage() {
   const [products, setProducts] = useState<Products[]>([]);
@@ -261,7 +262,7 @@ export default function HomePage() {
                             </div>
                             <div className="p-4">
                               <h3 className="font-heading font-semibold text-primary mb-2">{product.name}</h3>
-                              <p className="text-2xl font-bold text-secondary mb-4">₹{product.price}</p>
+                              <p className="text-2xl font-bold text-secondary mb-4">{formatINR(product.price)}</p>
                               <div className="flex gap-2">
                                 <motion.div
                                   className="flex-1"

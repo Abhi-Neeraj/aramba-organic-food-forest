@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { Product as ProductPrimitive } from '@wix/stores/components';
 import { Button } from '@/components/ui/button';
 import { Badge } from '../badge';
+import { formatINR } from '@/lib/currency';
 
 /**
  * Root component for product display and interaction.
@@ -129,7 +130,7 @@ ProductDescription.displayName = 'ProductDescription';
 
 /**
  * Displays the current product price.
- * Automatically handles currency formatting and price ranges.
+ * Automatically handles currency formatting and price ranges in Indian Rupees (INR).
  *
  * @component
  * @example
@@ -161,8 +162,11 @@ export const ProductPrice = React.forwardRef<
         'text-3xl font-bold text-content-primary font-theme-heading',
         props.className
       )}
+      asChild
     >
-      {props.children}
+      {({ formattedPrice }) => (
+        <span>{formattedPrice}</span>
+      )}
     </ProductPrimitive.Price>
   );
 });
@@ -172,6 +176,7 @@ ProductPrice.displayName = 'ProductPrice';
 /**
  * Displays the original/compare-at price (usually crossed out).
  * Only shows when the product is on sale and has a compare-at price.
+ * Formatted in Indian Rupees (INR).
  *
  * @component
  * @example
@@ -196,8 +201,11 @@ export const ProductCompareAtPrice = React.forwardRef<
         'text-lg font-medium text-content-faded line-through',
         props.className
       )}
+      asChild
     >
-      {props.children}
+      {({ formattedPrice }) => (
+        <span>{formattedPrice}</span>
+      )}
     </ProductPrimitive.CompareAtPrice>
   );
 });
