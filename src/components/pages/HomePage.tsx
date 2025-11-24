@@ -44,7 +44,7 @@ export default function HomePage() {
 
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent("Hi! I'm interested in your organic products. Can you help me?");
-    window.open(`https://wa.me/918879543210?text=${message}`, '_blank');
+    window.open(`https://wa.me/9666277729?text=${message}`, '_blank');
   };
 
   return (
@@ -68,7 +68,7 @@ export default function HomePage() {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1, transition: { duration: 0.8, delay: 0.5 } }}
           >
-            Fresh From Our Forest To Your Table
+            From Our Forest To Your Table
           </motion.h1>
           <motion.p 
             className="text-lg md:text-xl text-white mb-8 font-paragraph"
