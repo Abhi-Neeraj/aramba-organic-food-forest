@@ -56,7 +56,7 @@ export default function HomePage() {
         animate={{ opacity: 1, transition: { duration: 1 } }}
       >
         <Image
-          src="https://images.pexels.com/photos/143133/pexels-photo-143133.jpeg"
+          src="https://res.cloudinary.com/dicfqwlfq/image/upload/v1763968767/360_F_708626395_P7O5qLX5ZyUBirtGRJzZDiuzM1AHEbJK_rpzjt3.jpg"
           alt="Basket of fresh organic produce"
           className="absolute inset-0 w-full h-full object-cover object-center"
           width={1920}
