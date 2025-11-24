@@ -8,6 +8,23 @@ import { BaseCrudService } from '@/integrations';
 import { BlogPosts } from '@/entities';
 import { format } from 'date-fns';
 
+// Helper function to validate and parse date
+const isValidDate = (dateObj: any): boolean => {
+  if (!dateObj || !dateObj.$date) return false;
+  const date = new Date(dateObj.$date);
+  return !isNaN(date.getTime());
+};
+
+const formatDate = (dateObj: any, formatStr: string): string | null => {
+  if (!isValidDate(dateObj)) return null;
+  try {
+    return format(new Date(dateObj.$date), formatStr);
+  } catch (error) {
+    console.error('Error formatting date:', error);
+    return null;
+  }
+};
+
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
   const [blogPost, setBlogPost] = useState<BlogPosts | null>(null);
@@ -123,10 +140,10 @@ export default function BlogPostPage() {
         <article className="bg-white rounded-xl p-8 shadow-md">
           {/* Meta Information */}
           <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-6">
-            {blogPost.publishDate && (
+            {blogPost.publishDate && isValidDate(blogPost.publishDate) && (
               <div className="flex items-center space-x-1">
                 <Calendar className="h-4 w-4" />
-                <span>{format(new Date(blogPost.publishDate.$date), 'MMMM dd, yyyy')}</span>
+                <span>{formatDate(blogPost.publishDate, 'MMMM dd, yyyy')}</span>
               </div>
             )}
             {blogPost.author && (

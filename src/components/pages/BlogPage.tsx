@@ -9,6 +9,23 @@ import { BaseCrudService } from '@/integrations';
 import { BlogPosts } from '@/entities';
 import { format } from 'date-fns';
 
+// Helper function to validate and parse date
+const isValidDate = (dateObj: any): boolean => {
+  if (!dateObj || !dateObj.$date) return false;
+  const date = new Date(dateObj.$date);
+  return !isNaN(date.getTime());
+};
+
+const formatDate = (dateObj: any, formatStr: string): string | null => {
+  if (!isValidDate(dateObj)) return null;
+  try {
+    return format(new Date(dateObj.$date), formatStr);
+  } catch (error) {
+    console.error('Error formatting date:', error);
+    return null;
+  }
+};
+
 export default function BlogPage() {
   const [blogPosts, setBlogPosts] = useState<BlogPosts[]>([]);
   const [loading, setLoading] = useState(true);
@@ -18,8 +35,8 @@ export default function BlogPage() {
       try {
         const { items } = await BaseCrudService.getAll<BlogPosts>('blogposts');
         setBlogPosts(items.sort((a, b) => {
-          const dateA = a.publishDate ? new Date(a.publishDate.$date) : new Date(0);
-          const dateB = b.publishDate ? new Date(b.publishDate.$date) : new Date(0);
+          const dateA = a.publishDate && isValidDate(a.publishDate) ? new Date(a.publishDate.$date) : new Date(0);
+          const dateB = b.publishDate && isValidDate(b.publishDate) ? new Date(b.publishDate.$date) : new Date(0);
           return dateB.getTime() - dateA.getTime();
         }));
       } catch (error) {
@@ -80,10 +97,10 @@ export default function BlogPage() {
                   <div className="p-6">
                     {/* Meta Information */}
                     <div className="flex items-center space-x-4 text-sm text-gray-500 mb-3">
-                      {post.publishDate && (
+                      {post.publishDate && isValidDate(post.publishDate) && (
                         <div className="flex items-center space-x-1">
                           <Calendar className="h-4 w-4" />
-                          <span>{format(new Date(post.publishDate.$date), 'MMM dd, yyyy')}</span>
+                          <span>{formatDate(post.publishDate, 'MMM dd, yyyy')}</span>
                         </div>
                       )}
                       {post.author && (
