@@ -13,8 +13,13 @@ export default function AdminDashboardPage() {
   const { member, actions } = useMember();
 
   useEffect(() => {
-    if (userRole !== 'admin') {
-      navigate('/login');
+    // Check if user is authenticated and has admin role
+    if (userRole === null) {
+      // User not authenticated, redirect to login
+      navigate('/login', { replace: true });
+    } else if (userRole !== 'admin') {
+      // User authenticated but wrong role, redirect to their dashboard
+      navigate(`/dashboard/${userRole}`, { replace: true });
     }
   }, [userRole, navigate]);
 

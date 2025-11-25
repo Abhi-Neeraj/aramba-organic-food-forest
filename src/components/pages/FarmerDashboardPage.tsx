@@ -13,8 +13,13 @@ export default function FarmerDashboardPage() {
   const { member, actions } = useMember();
 
   useEffect(() => {
-    if (userRole !== 'farmer') {
-      navigate('/login');
+    // Check if user is authenticated and has farmer role
+    if (userRole === null) {
+      // User not authenticated, redirect to login
+      navigate('/login', { replace: true });
+    } else if (userRole !== 'farmer') {
+      // User authenticated but wrong role, redirect to their dashboard
+      navigate(`/dashboard/${userRole}`, { replace: true });
     }
   }, [userRole, navigate]);
 

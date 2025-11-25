@@ -25,13 +25,11 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      // Use Wix member login
-      await actions.login();
-      
-      // After successful login, the member data will be available
-      // In a real implementation, you would fetch the user role from the database
-      // For now, we'll set a default role based on the tab
+      // Create a unique member ID for this login session
       const mockMemberId = 'member-' + Date.now();
+      
+      // Set the user role BEFORE navigating
+      // This ensures the auth state is available when the dashboard loads
       setUserRole(activeTab, mockMemberId, {
         _id: mockMemberId,
         roleType: activeTab,
@@ -41,8 +39,11 @@ export default function LoginPage() {
         permissionsSummary: `${activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} permissions`,
       });
 
+      // Small delay to ensure state is updated before navigation
+      await new Promise(resolve => setTimeout(resolve, 100));
+
       // Redirect to appropriate dashboard
-      navigate(`/dashboard/${activeTab}`);
+      navigate(`/dashboard/${activeTab}`, { replace: true });
     } catch (err) {
       setError('Login failed. Please try again.');
       console.error('Login error:', err);

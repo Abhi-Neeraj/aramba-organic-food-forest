@@ -13,8 +13,13 @@ export default function CustomerDashboardPage() {
   const { member, actions } = useMember();
 
   useEffect(() => {
-    if (userRole !== 'customer') {
-      navigate('/login');
+    // Check if user is authenticated and has customer role
+    if (userRole === null) {
+      // User not authenticated, redirect to login
+      navigate('/login', { replace: true });
+    } else if (userRole !== 'customer') {
+      // User authenticated but wrong role, redirect to their dashboard
+      navigate(`/dashboard/${userRole}`, { replace: true });
     }
   }, [userRole, navigate]);
 
