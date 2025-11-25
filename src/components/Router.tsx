@@ -28,7 +28,10 @@ import FarmerDashboardPage from '@/components/pages/FarmerDashboardPage';
 import AdminDashboardPage from '@/components/pages/AdminDashboardPage';
 import AdminProductManagementPage from '@/components/pages/AdminProductManagementPage';
 import AdminProductRequestsPage from '@/components/pages/AdminProductRequestsPage';
+import AdminAnalyticsDashboardPage from '@/components/pages/AdminAnalyticsDashboardPage';
 import FarmerProductRequestPage from '@/components/pages/FarmerProductRequestPage';
+import FarmerAvailabilityPage from '@/components/pages/FarmerAvailabilityPage';
+import FarmerOrderFulfillmentPage from '@/components/pages/FarmerOrderFulfillmentPage';
 import CustomerOrdersPage from '@/components/pages/CustomerOrdersPage';
 import Layout from '@/components/Layout';
 
@@ -135,8 +138,20 @@ const router = createBrowserRouter([
         element: <AdminProductRequestsPage />,
       },
       {
+        path: '/admin/analytics',
+        element: <AdminAnalyticsDashboardPage />,
+      },
+      {
         path: '/farmer/product-requests',
         element: <FarmerProductRequestPage />,
+      },
+      {
+        path: '/farmer/availability',
+        element: <FarmerAvailabilityPage />,
+      },
+      {
+        path: '/farmer/orders',
+        element: <FarmerOrderFulfillmentPage />,
       },
       {
         path: '/customer/orders',

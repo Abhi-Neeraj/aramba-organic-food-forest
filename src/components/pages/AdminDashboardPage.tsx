@@ -184,15 +184,15 @@ export default function AdminDashboardPage() {
                 <CardHeader>
                   <CardTitle className="font-heading text-primary flex items-center gap-2">
                     <TrendingUp className="h-5 w-5" />
-                    Orders & Sales
+                    Analytics & Reports
                   </CardTitle>
                   <CardDescription className="font-paragraph">
-                    Track orders and revenue
+                    View platform analytics and insights
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <Button variant="outline" className="w-full justify-start border-primary/20 text-primary hover:bg-primary/5">
-                    View All Orders
+                  <Button asChild variant="outline" className="w-full justify-start border-primary/20 text-primary hover:bg-primary/5">
+                    <Link to="/admin/analytics">View Analytics</Link>
                   </Button>
                   <Button variant="outline" className="w-full justify-start border-primary/20 text-primary hover:bg-primary/5">
                     Sales Reports

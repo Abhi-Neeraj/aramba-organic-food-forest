@@ -145,20 +145,18 @@ export default function FarmerDashboardPage() {
             <motion.div variants={itemVariants}>
               <Card className="border-primary/20">
                 <CardHeader>
-                  <CardTitle className="font-heading text-primary">Your Products</CardTitle>
+                  <CardTitle className="font-heading text-primary">Product Availability</CardTitle>
                   <CardDescription className="font-paragraph">
-                    Manage your listings
+                    Manage your product inventory and availability
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-center py-8">
-                    <Package className="h-12 w-12 text-primary/30 mx-auto mb-3" />
-                    <p className="text-primary/60 font-paragraph mb-4">No products listed yet</p>
-                    <Button className="bg-primary hover:bg-primary/90">
+                  <Button asChild className="w-full bg-primary hover:bg-primary/90">
+                    <Link to="/farmer/availability">
                       <Plus className="h-4 w-4 mr-2" />
-                      Add Your First Product
-                    </Button>
-                  </div>
+                      Manage Availability
+                    </Link>
+                  </Button>
                 </CardContent>
               </Card>
             </motion.div>
@@ -166,16 +164,18 @@ export default function FarmerDashboardPage() {
             <motion.div variants={itemVariants}>
               <Card className="border-primary/20">
                 <CardHeader>
-                  <CardTitle className="font-heading text-primary">Recent Orders</CardTitle>
+                  <CardTitle className="font-heading text-primary">Order Fulfillment</CardTitle>
                   <CardDescription className="font-paragraph">
-                    Orders from customers
+                    Confirm and fulfill customer orders
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-center py-8">
-                    <TrendingUp className="h-12 w-12 text-primary/30 mx-auto mb-3" />
-                    <p className="text-primary/60 font-paragraph">No orders yet</p>
-                  </div>
+                  <Button asChild className="w-full bg-secondary hover:bg-secondary/90">
+                    <Link to="/farmer/orders">
+                      <Package className="h-4 w-4 mr-2" />
+                      View Orders
+                    </Link>
+                  </Button>
                 </CardContent>
               </Card>
             </motion.div>
