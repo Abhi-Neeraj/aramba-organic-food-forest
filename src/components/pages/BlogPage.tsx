@@ -35,8 +35,8 @@ export default function BlogPage() {
       try {
         const { items } = await BaseCrudService.getAll<BlogPosts>('blogposts');
         setBlogPosts(items.sort((a, b) => {
-          const dateA = a.publishDate && isValidDate(a.publishDate) ? new Date(a.publishDate.$date) : new Date(0);
-          const dateB = b.publishDate && isValidDate(b.publishDate) ? new Date(b.publishDate.$date) : new Date(0);
+          const dateA = a.publishDate && isValidDate(a.publishDate) ? new Date((a.publishDate as any).$date) : new Date(0);
+          const dateB = b.publishDate && isValidDate(b.publishDate) ? new Date((b.publishDate as any).$date) : new Date(0);
           return dateB.getTime() - dateA.getTime();
         }));
       } catch (error) {

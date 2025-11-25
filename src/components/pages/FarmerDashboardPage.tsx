@@ -126,15 +126,17 @@ export default function FarmerDashboardPage() {
             <motion.div variants={itemVariants}>
               <Card className="border-primary/20">
                 <CardHeader>
-                  <CardTitle className="font-heading text-primary">Add New Product</CardTitle>
+                  <CardTitle className="font-heading text-primary">Request New Product</CardTitle>
                   <CardDescription className="font-paragraph">
-                    List your organic products for sale
+                    Request to list your organic products for sale
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Button className="w-full bg-primary hover:bg-primary/90">
-                    <Plus className="h-4 w-4 mr-2" />
-                    Add Product
+                  <Button asChild className="w-full bg-primary hover:bg-primary/90">
+                    <Link to="/farmer/product-requests">
+                      <Plus className="h-4 w-4 mr-2" />
+                      Submit Product Request
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>

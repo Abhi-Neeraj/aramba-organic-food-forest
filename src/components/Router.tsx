@@ -26,6 +26,10 @@ import SignupPage from '@/components/pages/SignupPage';
 import CustomerDashboardPage from '@/components/pages/CustomerDashboardPage';
 import FarmerDashboardPage from '@/components/pages/FarmerDashboardPage';
 import AdminDashboardPage from '@/components/pages/AdminDashboardPage';
+import AdminProductManagementPage from '@/components/pages/AdminProductManagementPage';
+import AdminProductRequestsPage from '@/components/pages/AdminProductRequestsPage';
+import FarmerProductRequestPage from '@/components/pages/FarmerProductRequestPage';
+import CustomerOrdersPage from '@/components/pages/CustomerOrdersPage';
 import Layout from '@/components/Layout';
 
 // Main layout component that includes the scroll to top component and the layout component
@@ -121,6 +125,22 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/admin',
         element: <AdminDashboardPage />,
+      },
+      {
+        path: '/admin/products',
+        element: <AdminProductManagementPage />,
+      },
+      {
+        path: '/admin/product-requests',
+        element: <AdminProductRequestsPage />,
+      },
+      {
+        path: '/farmer/product-requests',
+        element: <FarmerProductRequestPage />,
+      },
+      {
+        path: '/customer/orders',
+        element: <CustomerOrdersPage />,
       },
       {
         path: "*",

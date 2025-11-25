@@ -139,13 +139,12 @@ export default function CustomerDashboardPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-center py-8">
-                    <Package className="h-12 w-12 text-primary/30 mx-auto mb-3" />
-                    <p className="text-primary/60 font-paragraph mb-4">No orders yet</p>
-                    <Button asChild variant="outline" className="border-primary/20">
-                      <Link to="/store">Place Your First Order</Link>
-                    </Button>
-                  </div>
+                  <Button asChild className="w-full bg-primary hover:bg-primary/90">
+                    <Link to="/customer/orders">
+                      <Package className="h-4 w-4 mr-2" />
+                      View All Orders
+                    </Link>
+                  </Button>
                 </CardContent>
               </Card>
             </motion.div>

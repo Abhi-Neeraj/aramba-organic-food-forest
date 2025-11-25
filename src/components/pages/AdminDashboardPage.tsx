@@ -166,14 +166,14 @@ export default function AdminDashboardPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <Button variant="outline" className="w-full justify-start border-primary/20 text-primary hover:bg-primary/5">
-                    View All Products
+                  <Button asChild variant="outline" className="w-full justify-start border-primary/20 text-primary hover:bg-primary/5">
+                    <Link to="/admin/products">View All Products</Link>
                   </Button>
-                  <Button variant="outline" className="w-full justify-start border-primary/20 text-primary hover:bg-primary/5">
-                    Manage Categories
+                  <Button asChild variant="outline" className="w-full justify-start border-primary/20 text-primary hover:bg-primary/5">
+                    <Link to="/admin/products">Manage Categories</Link>
                   </Button>
-                  <Button variant="outline" className="w-full justify-start border-primary/20 text-primary hover:bg-primary/5">
-                    Review Submissions
+                  <Button asChild variant="outline" className="w-full justify-start border-primary/20 text-primary hover:bg-primary/5">
+                    <Link to="/admin/product-requests">Review Submissions</Link>
                   </Button>
                 </CardContent>
               </Card>
