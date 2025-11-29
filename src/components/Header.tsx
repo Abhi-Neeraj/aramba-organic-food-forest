@@ -1,11 +1,17 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, MessageCircle, LogIn } from 'lucide-react';
+import { Search, MessageCircle, LogIn, Bell, Heart } from 'lucide-react';
 import { MiniCart } from '@/wix-verticals/react-pages/react-router/routes/root';
 import { Button } from '@/components/ui/button';
 import { useAuthStore } from '@/stores/authStore';
+import { useNotificationStore } from '@/stores/notificationStore';
+import NotificationCenter from '@/components/NotificationCenter';
 
 export default function Header() {
-  const { userRole, clearAuth } = useAuthStore();
+  const { userRole, clearAuth, isAuthenticated } = useAuthStore();
+  const { unreadCount } = useNotificationStore();
+  const [notificationOpen, setNotificationOpen] = useState(false);
+
   const handleLogout = () => {
     clearAuth();
   };
@@ -76,6 +82,32 @@ export default function Header() {
               <span className="hidden sm:inline">Chat</span>
             </Button>
 
+            {/* Wishlist */}
+            {isAuthenticated && (
+              <Button asChild variant="ghost" size="sm" className="relative">
+                <Link to="/wishlist">
+                  <Heart className="h-5 w-5 text-secondary" />
+                </Link>
+              </Button>
+            )}
+
+            {/* Notifications */}
+            {isAuthenticated && (
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={() => setNotificationOpen(!notificationOpen)}
+                className="relative"
+              >
+                <Bell className="h-5 w-5 text-primary" />
+                {unreadCount > 0 && (
+                  <span className="absolute top-0 right-0 bg-secondary text-white text-xs font-bold px-1.5 py-0.5 rounded-full">
+                    {unreadCount}
+                  </span>
+                )}
+              </Button>
+            )}
+
             {/* Auth Buttons */}
             {userRole ? (
               <div className="flex items-center space-x-2">
@@ -105,6 +137,9 @@ export default function Header() {
             {/* Mini Cart */}
             <MiniCart />
           </div>
+
+          {/* Notification Center */}
+          <NotificationCenter isOpen={notificationOpen} onClose={() => setNotificationOpen(false)} />
         </div>
 
         {/* Mobile Navigation */}

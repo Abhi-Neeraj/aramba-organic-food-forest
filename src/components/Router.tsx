@@ -33,6 +33,11 @@ import FarmerProductRequestPage from '@/components/pages/FarmerProductRequestPag
 import FarmerAvailabilityPage from '@/components/pages/FarmerAvailabilityPage';
 import FarmerOrderFulfillmentPage from '@/components/pages/FarmerOrderFulfillmentPage';
 import CustomerOrdersPage from '@/components/pages/CustomerOrdersPage';
+import DeliveryAgentDashboardPage from '@/components/pages/DeliveryAgentDashboardPage';
+import DeliveryAgentOrdersPage from '@/components/pages/DeliveryAgentOrdersPage';
+import DeliveryAgentEarningsPage from '@/components/pages/DeliveryAgentEarningsPage';
+import WishlistPage from '@/components/pages/WishlistPage';
+import ProductReviewsPage from '@/components/pages/ProductReviewsPage';
 import Layout from '@/components/Layout';
 
 // Main layout component that includes the scroll to top component and the layout component
@@ -156,6 +161,26 @@ const router = createBrowserRouter([
       {
         path: '/customer/orders',
         element: <CustomerOrdersPage />,
+      },
+      {
+        path: '/dashboard/delivery-agent',
+        element: <DeliveryAgentDashboardPage />,
+      },
+      {
+        path: '/delivery-agent/orders',
+        element: <DeliveryAgentOrdersPage />,
+      },
+      {
+        path: '/delivery-agent/earnings',
+        element: <DeliveryAgentEarningsPage />,
+      },
+      {
+        path: '/wishlist',
+        element: <WishlistPage />,
+      },
+      {
+        path: '/products/:productId/reviews',
+        element: <ProductReviewsPage />,
       },
       {
         path: "*",

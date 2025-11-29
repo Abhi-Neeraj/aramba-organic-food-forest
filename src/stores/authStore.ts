@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { UserRoles } from '@/entities';
 
-export type UserRole = 'admin' | 'farmer' | 'customer';
+export type UserRole = 'admin' | 'farmer' | 'customer' | 'delivery-agent';
 
 interface AuthState {
   userRole: UserRole | null;
