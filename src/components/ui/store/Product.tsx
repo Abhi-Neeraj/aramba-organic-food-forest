@@ -164,8 +164,8 @@ export const ProductPrice = React.forwardRef<
       )}
       asChild
     >
-      {({ formattedPrice }) => (
-        <span>{formattedPrice}</span>
+      {({ price }) => (
+        <span>{formatINR(typeof price === 'string' ? parseFloat(price) : price)}</span>
       )}
     </ProductPrimitive.Price>
   );
@@ -203,8 +203,8 @@ export const ProductCompareAtPrice = React.forwardRef<
       )}
       asChild
     >
-      {({ formattedPrice }) => (
-        <span>{formattedPrice}</span>
+      {({ price }) => (
+        <span>{formatINR(typeof price === 'string' ? parseFloat(price) : price)}</span>
       )}
     </ProductPrimitive.CompareAtPrice>
   );
