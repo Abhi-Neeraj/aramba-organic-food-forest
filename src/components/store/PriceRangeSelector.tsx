@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Slider } from '@/components/ui/slider';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
+import { formatINR } from '@/lib/currency';
 
 interface PriceRangeSelectorProps {
   min: number;
@@ -49,8 +50,8 @@ export const PriceRangeSelector: React.FC<PriceRangeSelectorProps> = ({
         </div>
         {/* Price Range Display */}
         <div className="flex items-center justify-between text-sm text-content-light mb-6">
-          <span>${String(roundedMin)}</span>
-          <span>${String(roundedMax)}</span>
+          <span>{formatINR(roundedMin)}</span>
+          <span>{formatINR(roundedMax)}</span>
         </div>
 
         {/* Dual Range Slider */}

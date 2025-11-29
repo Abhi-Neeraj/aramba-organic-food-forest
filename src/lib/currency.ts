@@ -3,16 +3,39 @@
  */
 
 /**
- * Formats a number as Indian Rupees (INR)
- * @param amount - The amount to format
+ * Money type from Wix ecom - represents a monetary value with amount and currency
+ */
+type Money = {
+  amount?: string | number;
+  value?: string | number;
+  formattedAmount?: string;
+};
+
+/**
+ * Formats a number or Money object as Indian Rupees (INR)
+ * @param amount - The amount to format (number, Money object, or null/undefined)
  * @returns Formatted string with INR symbol and proper formatting
  * @example
  * formatINR(1000) => "₹1,000"
  * formatINR(1000000) => "₹10,00,000"
+ * formatINR({ amount: 1000 }) => "₹1,000"
  */
-export function formatINR(amount: number | undefined | null): string {
+export function formatINR(amount: number | Money | undefined | null): string {
   if (amount === null || amount === undefined) {
     return '₹0';
+  }
+
+  // Handle Money object type
+  let numericAmount: number;
+  if (typeof amount === 'object') {
+    // Try to extract numeric value from Money object
+    const value = amount.amount ?? amount.value;
+    if (value === undefined || value === null) {
+      return '₹0';
+    }
+    numericAmount = typeof value === 'string' ? parseFloat(value) : value;
+  } else {
+    numericAmount = amount;
   }
 
   // Format using Indian numbering system
@@ -23,7 +46,7 @@ export function formatINR(amount: number | undefined | null): string {
     maximumFractionDigits: 0,
   });
 
-  return formatter.format(amount);
+  return formatter.format(numericAmount);
 }
 
 /**

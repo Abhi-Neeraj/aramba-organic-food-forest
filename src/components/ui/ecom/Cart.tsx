@@ -94,10 +94,10 @@ export const CartTotalsPrice = React.forwardRef<
       className={cn(cartTotalVariants({ variant, size }), className)}
       asChild
     >
-      {({ formattedPrice }) => (
+      {({ price }) => (
         <div className={cn(cartTotalVariants({ variant, size }), className)}>
           <span>Subtotal:</span>
-          <span>{formattedPrice}</span>
+          <span>{formatINR(price)}</span>
         </div>
       )}
     </CartPrimitive.Totals.Price>
@@ -141,10 +141,10 @@ export const CartTotalsDiscount = React.forwardRef<
       className={cn(cartTotalVariants({ variant, size }), className)}
       asChild
     >
-      {({ formattedPrice }) => (
+      {({ price }) => (
         <div className={cn(cartTotalVariants({ variant, size }), className)}>
           <span>Discount:</span>
-          <span>{formattedPrice}</span>
+          <span>{formatINR(price)}</span>
         </div>
       )}
     </CartPrimitive.Totals.Discount>
@@ -187,10 +187,10 @@ export const CartTotalsShipping = React.forwardRef<
       className={cn(cartTotalVariants({ variant, size }), className)}
       asChild
     >
-      {({ formattedPrice }) => (
+      {({ price }) => (
         <div className={cn(cartTotalVariants({ variant, size }), className)}>
           <span>Shipping:</span>
-          <span>{formattedPrice}</span>
+          <span>{formatINR(price)}</span>
         </div>
       )}
     </CartPrimitive.Totals.Shipping>
@@ -234,10 +234,10 @@ export const CartTotalsTax = React.forwardRef<
       className={cn(cartTotalVariants({ variant, size }), className)}
       asChild
     >
-      {({ formattedPrice }) => (
+      {({ price }) => (
         <div className={cn(cartTotalVariants({ variant, size }), className)}>
           <span>Tax:</span>
-          <span>{formattedPrice}</span>
+          <span>{formatINR(price)}</span>
         </div>
       )}
     </CartPrimitive.Totals.Tax>
@@ -281,10 +281,10 @@ export const CartTotalsTotal = React.forwardRef<
       className={cn(cartTotalVariants({ variant, size }), className)}
       asChild
     >
-      {({ formattedPrice }) => (
+      {({ price }) => (
         <div className={cn(cartTotalVariants({ variant, size }), className)}>
           <span>Total:</span>
-          <span>{formattedPrice}</span>
+          <span>{formatINR(price)}</span>
         </div>
       )}
     </CartPrimitive.Totals.Total>
