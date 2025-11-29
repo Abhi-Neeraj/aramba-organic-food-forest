@@ -146,7 +146,7 @@ export default function AdminProductManagementPage() {
   const resetForm = () => {
     setFormData({
       name: '',
-      price: 0,
+      price: 750,
       category: '',
       description: '',
       mainImage: '',
