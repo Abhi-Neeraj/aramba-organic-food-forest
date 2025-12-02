@@ -63,6 +63,12 @@ export default function Header() {
             >
               Our Team
             </Link>
+            <Link 
+              to="/policy" 
+              className="text-primary hover:text-secondary transition-colors font-paragraph"
+            >
+              Policy
+            </Link>
           </nav>
 
           {/* Actions */}
@@ -168,6 +174,12 @@ export default function Header() {
               className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
             >
               Our Team
+            </Link>
+            <Link 
+              to="/policy" 
+              className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
+            >
+              Policy
             </Link>
             {!userRole && (
               <Link 

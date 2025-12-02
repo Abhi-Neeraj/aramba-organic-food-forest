@@ -38,6 +38,7 @@ import DeliveryAgentOrdersPage from '@/components/pages/DeliveryAgentOrdersPage'
 import DeliveryAgentEarningsPage from '@/components/pages/DeliveryAgentEarningsPage';
 import WishlistPage from '@/components/pages/WishlistPage';
 import ProductReviewsPage from '@/components/pages/ProductReviewsPage';
+import PolicyPage from '@/components/pages/PolicyPage';
 import Layout from '@/components/Layout';
 
 // Main layout component that includes the scroll to top component and the layout component
@@ -181,6 +182,10 @@ const router = createBrowserRouter([
       {
         path: '/products/:productId/reviews',
         element: <ProductReviewsPage />,
+      },
+      {
+        path: '/policy',
+        element: <PolicyPage />,
       },
       {
         path: "*",
