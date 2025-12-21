@@ -70,6 +70,12 @@ export default function Header() {
               Sustainability
             </Link>
             <Link 
+              to="/impact" 
+              className="text-primary hover:text-secondary transition-colors font-paragraph"
+            >
+              Impact
+            </Link>
+            <Link 
               to="/blog" 
               className="text-primary hover:text-secondary transition-colors font-paragraph"
             >
@@ -198,6 +204,12 @@ export default function Header() {
               className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
             >
               Sustainability
+            </Link>
+            <Link 
+              to="/impact" 
+              className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
+            >
+              Impact
             </Link>
             <Link 
               to="/blog" 

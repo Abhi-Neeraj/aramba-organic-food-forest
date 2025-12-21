@@ -62,6 +62,9 @@ export default function Footer() {
               <Link to="/sustainability" className="block text-sm hover:text-terracotta transition-colors">
                 Sustainability
               </Link>
+              <Link to="/impact" className="block text-sm hover:text-terracotta transition-colors">
+                Impact
+              </Link>
             </div>
           </div>
 

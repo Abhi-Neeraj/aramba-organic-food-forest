@@ -24,8 +24,11 @@ import TestimonialsPage from '@/components/pages/TestimonialsPage';
 import ContactPage from '@/components/pages/ContactPage';
 import CSAPage from '@/components/pages/CSAPage';
 import ResourcesPage from '@/components/pages/ResourcesPage';
+import ImpactDashboardPage from '@/components/pages/ImpactDashboardPage';
 import BlogPage from '@/components/pages/BlogPage';
+import EnhancedBlogPage from '@/components/pages/EnhancedBlogPage';
 import BlogPostPage from '@/components/pages/BlogPostPage';
+import ProductCatalogPage from '@/components/pages/ProductCatalogPage';
 import OurTeamPage from '@/components/pages/OurTeamPage';
 import LoginPage from '@/components/pages/LoginPage';
 import SignupPage from '@/components/pages/SignupPage';
@@ -93,6 +96,10 @@ const router = createBrowserRouter([
         element: <ResourcesPage />,
       },
       {
+        path: '/impact',
+        element: <ImpactDashboardPage />,
+      },
+      {
         path: '/products/:slug',
         element: (
           <div className="min-h-screen bg-background">
@@ -135,11 +142,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/blog',
-        element: <BlogPage />,
+        element: <EnhancedBlogPage />,
       },
       {
         path: '/blog/:slug',
         element: <BlogPostPage />,
+      },
+      {
+        path: '/products-catalog',
+        element: <ProductCatalogPage />,
       },
       {
         path: '/our-team',
