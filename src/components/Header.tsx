@@ -46,10 +46,28 @@ export default function Header() {
               Home
             </Link>
             <Link 
+              to="/about" 
+              className="text-primary hover:text-secondary transition-colors font-paragraph"
+            >
+              About
+            </Link>
+            <Link 
               to="/store" 
               className="text-primary hover:text-secondary transition-colors font-paragraph"
             >
               Shop
+            </Link>
+            <Link 
+              to="/csa" 
+              className="text-primary hover:text-secondary transition-colors font-paragraph"
+            >
+              CSA
+            </Link>
+            <Link 
+              to="/sustainability" 
+              className="text-primary hover:text-secondary transition-colors font-paragraph"
+            >
+              Sustainability
             </Link>
             <Link 
               to="/blog" 
@@ -58,16 +76,16 @@ export default function Header() {
               Blog
             </Link>
             <Link 
-              to="/our-team" 
+              to="/testimonials" 
               className="text-primary hover:text-secondary transition-colors font-paragraph"
             >
-              Our Team
+              Reviews
             </Link>
             <Link 
-              to="/policy" 
+              to="/contact" 
               className="text-primary hover:text-secondary transition-colors font-paragraph"
             >
-              Policy
+              Contact
             </Link>
           </nav>
 
@@ -150,12 +168,18 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         <div className="md:hidden pb-4">
-          <nav className="flex items-center justify-center space-x-6">
+          <nav className="flex items-center justify-center space-x-6 flex-wrap gap-2">
             <Link 
               to="/" 
               className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
             >
               Home
+            </Link>
+            <Link 
+              to="/about" 
+              className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
+            >
+              About
             </Link>
             <Link 
               to="/store" 
@@ -164,22 +188,34 @@ export default function Header() {
               Shop
             </Link>
             <Link 
+              to="/csa" 
+              className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
+            >
+              CSA
+            </Link>
+            <Link 
+              to="/sustainability" 
+              className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
+            >
+              Sustainability
+            </Link>
+            <Link 
               to="/blog" 
               className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
             >
               Blog
             </Link>
             <Link 
-              to="/our-team" 
+              to="/testimonials" 
               className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
             >
-              Our Team
+              Reviews
             </Link>
             <Link 
-              to="/policy" 
+              to="/contact" 
               className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
             >
-              Policy
+              Contact
             </Link>
             {!userRole && (
               <Link 

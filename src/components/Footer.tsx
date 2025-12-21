@@ -50,33 +50,36 @@ export default function Footer() {
               <Link to="/" className="block text-sm hover:text-terracotta transition-colors">
                 Home
               </Link>
+              <Link to="/about" className="block text-sm hover:text-terracotta transition-colors">
+                About Us
+              </Link>
               <Link to="/store" className="block text-sm hover:text-terracotta transition-colors">
                 Shop
               </Link>
-              <Link to="/blog" className="block text-sm hover:text-terracotta transition-colors">
-                Blog
+              <Link to="/csa" className="block text-sm hover:text-terracotta transition-colors">
+                CSA Program
               </Link>
-              <Link to="/our-team" className="block text-sm hover:text-terracotta transition-colors">
-                Our Team
+              <Link to="/sustainability" className="block text-sm hover:text-terracotta transition-colors">
+                Sustainability
               </Link>
             </div>
           </div>
 
           {/* Categories */}
           <div className="space-y-4">
-            <h3 className="text-lg font-heading font-semibold">Categories</h3>
+            <h3 className="text-lg font-heading font-semibold">Resources</h3>
             <div className="space-y-2">
-              <Link to="/store" className="block text-sm hover:text-terracotta transition-colors">
-                Vegetables
+              <Link to="/blog" className="block text-sm hover:text-terracotta transition-colors">
+                Blog
               </Link>
-              <Link to="/store" className="block text-sm hover:text-terracotta transition-colors">
-                Fruits
+              <Link to="/resources" className="block text-sm hover:text-terracotta transition-colors">
+                Learning Hub
               </Link>
-              <Link to="/store" className="block text-sm hover:text-terracotta transition-colors">
-                Oils
+              <Link to="/testimonials" className="block text-sm hover:text-terracotta transition-colors">
+                Reviews
               </Link>
-              <Link to="/store" className="block text-sm hover:text-terracotta transition-colors">
-                Millets
+              <Link to="/contact" className="block text-sm hover:text-terracotta transition-colors">
+                Contact Us
               </Link>
             </div>
           </div>

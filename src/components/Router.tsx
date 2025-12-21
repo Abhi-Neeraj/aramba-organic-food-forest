@@ -18,6 +18,12 @@ import { Cart } from '@/wix-verticals/react-pages/react-router/routes/cart';
 
 // Import page components
 import HomePage from '@/components/pages/HomePage';
+import AboutPage from '@/components/pages/AboutPage';
+import SustainabilityPage from '@/components/pages/SustainabilityPage';
+import TestimonialsPage from '@/components/pages/TestimonialsPage';
+import ContactPage from '@/components/pages/ContactPage';
+import CSAPage from '@/components/pages/CSAPage';
+import ResourcesPage from '@/components/pages/ResourcesPage';
 import BlogPage from '@/components/pages/BlogPage';
 import BlogPostPage from '@/components/pages/BlogPostPage';
 import OurTeamPage from '@/components/pages/OurTeamPage';
@@ -61,6 +67,30 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+      },
+      {
+        path: '/about',
+        element: <AboutPage />,
+      },
+      {
+        path: '/sustainability',
+        element: <SustainabilityPage />,
+      },
+      {
+        path: '/testimonials',
+        element: <TestimonialsPage />,
+      },
+      {
+        path: '/contact',
+        element: <ContactPage />,
+      },
+      {
+        path: '/csa',
+        element: <CSAPage />,
+      },
+      {
+        path: '/resources',
+        element: <ResourcesPage />,
       },
       {
         path: '/products/:slug',
