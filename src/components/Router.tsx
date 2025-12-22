@@ -48,6 +48,16 @@ import DeliveryAgentEarningsPage from '@/components/pages/DeliveryAgentEarningsP
 import WishlistPage from '@/components/pages/WishlistPage';
 import ProductReviewsPage from '@/components/pages/ProductReviewsPage';
 import PolicyPage from '@/components/pages/PolicyPage';
+import RecipeCollectionPage from '@/components/pages/RecipeCollectionPage';
+import SubscriptionDashboardPage from '@/components/pages/SubscriptionDashboardPage';
+import FarmerStoriesPage from '@/components/pages/FarmerStoriesPage';
+import CertificationsPage from '@/components/pages/CertificationsPage';
+import DeliveryTrackerPage from '@/components/pages/DeliveryTrackerPage';
+import CommunityForumPage from '@/components/pages/CommunityForumPage';
+import LoyaltyProgramPage from '@/components/pages/LoyaltyProgramPage';
+import NutritionInfoPage from '@/components/pages/NutritionInfoPage';
+import EducationalHubPage from '@/components/pages/EducationalHubPage';
+import SustainabilityReportPage from '@/components/pages/SustainabilityReportPage';
 import Layout from '@/components/Layout';
 
 // Main layout component that includes the scroll to top component and the layout component
@@ -227,6 +237,46 @@ const router = createBrowserRouter([
       {
         path: '/policy',
         element: <PolicyPage />,
+      },
+      {
+        path: '/recipes',
+        element: <RecipeCollectionPage />,
+      },
+      {
+        path: '/subscriptions',
+        element: <SubscriptionDashboardPage />,
+      },
+      {
+        path: '/farmers',
+        element: <FarmerStoriesPage />,
+      },
+      {
+        path: '/certifications',
+        element: <CertificationsPage />,
+      },
+      {
+        path: '/delivery-tracker',
+        element: <DeliveryTrackerPage />,
+      },
+      {
+        path: '/community',
+        element: <CommunityForumPage />,
+      },
+      {
+        path: '/loyalty',
+        element: <LoyaltyProgramPage />,
+      },
+      {
+        path: '/nutrition',
+        element: <NutritionInfoPage />,
+      },
+      {
+        path: '/education',
+        element: <EducationalHubPage />,
+      },
+      {
+        path: '/sustainability',
+        element: <SustainabilityReportPage />,
       },
       {
         path: "*",
