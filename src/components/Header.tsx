@@ -1,11 +1,18 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, MessageCircle, LogIn, Bell, Heart } from 'lucide-react';
+import { Search, MessageCircle, LogIn, Bell, Heart, ChevronDown } from 'lucide-react';
 import { MiniCart } from '@/wix-verticals/react-pages/react-router/routes/root';
 import { Button } from '@/components/ui/button';
 import { useAuthStore } from '@/stores/authStore';
 import { useNotificationStore } from '@/stores/notificationStore';
 import NotificationCenter from '@/components/NotificationCenter';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from '@/components/ui/dropdown-menu';
 
 export default function Header() {
   const { userRole, clearAuth, isAuthenticated } = useAuthStore();
@@ -51,12 +58,65 @@ export default function Header() {
             >
               About
             </Link>
-            <Link 
-              to="/store" 
-              className="text-primary hover:text-secondary transition-colors font-paragraph"
-            >
-              Shop
-            </Link>
+
+            {/* Shop by Category Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="text-primary hover:text-secondary transition-colors font-paragraph flex items-center gap-1">
+                  Shop <ChevronDown className="h-4 w-4" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-56">
+                <DropdownMenuItem asChild>
+                  <Link to="/store" className="cursor-pointer">
+                    All Products
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link to="/fresh-fruits-vegetables" className="cursor-pointer">
+                    Fresh Fruits & Vegetables
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/grocery-staples" className="cursor-pointer">
+                    Grocery & Staples
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/dairy-bakery" className="cursor-pointer">
+                    Dairy & Bakery
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/beverages" className="cursor-pointer">
+                    Beverages
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/snacks-branded-foods" className="cursor-pointer">
+                    Snacks & Branded Foods
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link to="/personal-care" className="cursor-pointer">
+                    Personal Care
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/home-care" className="cursor-pointer">
+                    Home Care
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/baby-care" className="cursor-pointer">
+                    Baby Care
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <Link 
               to="/csa" 
               className="text-primary hover:text-secondary transition-colors font-paragraph"
@@ -81,18 +141,69 @@ export default function Header() {
             >
               Blog
             </Link>
-            <Link 
-              to="/testimonials" 
-              className="text-primary hover:text-secondary transition-colors font-paragraph"
-            >
-              Reviews
-            </Link>
-            <Link 
-              to="/contact" 
-              className="text-primary hover:text-secondary transition-colors font-paragraph"
-            >
-              Contact
-            </Link>
+
+            {/* More Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="text-primary hover:text-secondary transition-colors font-paragraph flex items-center gap-1">
+                  More <ChevronDown className="h-4 w-4" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-56">
+                <DropdownMenuItem asChild>
+                  <Link to="/testimonials" className="cursor-pointer">
+                    Reviews
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/contact" className="cursor-pointer">
+                    Contact
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link to="/recipes" className="cursor-pointer">
+                    Recipes
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/nutrition" className="cursor-pointer">
+                    Nutrition Info
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/education" className="cursor-pointer">
+                    Educational Hub
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link to="/farmers" className="cursor-pointer">
+                    Farmer Stories
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/certifications" className="cursor-pointer">
+                    Certifications
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/community" className="cursor-pointer">
+                    Community Forum
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/loyalty" className="cursor-pointer">
+                    Loyalty Program
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/subscriptions" className="cursor-pointer">
+                    Subscriptions
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
 
           {/* Actions */}
@@ -187,12 +298,65 @@ export default function Header() {
             >
               About
             </Link>
-            <Link 
-              to="/store" 
-              className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
-            >
-              Shop
-            </Link>
+
+            {/* Mobile Shop Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="text-primary hover:text-secondary transition-colors font-paragraph text-sm flex items-center gap-1">
+                  Shop <ChevronDown className="h-3 w-3" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-48">
+                <DropdownMenuItem asChild>
+                  <Link to="/store" className="cursor-pointer text-sm">
+                    All Products
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link to="/fresh-fruits-vegetables" className="cursor-pointer text-sm">
+                    Fresh Fruits & Vegetables
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/grocery-staples" className="cursor-pointer text-sm">
+                    Grocery & Staples
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/dairy-bakery" className="cursor-pointer text-sm">
+                    Dairy & Bakery
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/beverages" className="cursor-pointer text-sm">
+                    Beverages
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/snacks-branded-foods" className="cursor-pointer text-sm">
+                    Snacks & Branded Foods
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link to="/personal-care" className="cursor-pointer text-sm">
+                    Personal Care
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/home-care" className="cursor-pointer text-sm">
+                    Home Care
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/baby-care" className="cursor-pointer text-sm">
+                    Baby Care
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <Link 
               to="/csa" 
               className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
@@ -217,18 +381,70 @@ export default function Header() {
             >
               Blog
             </Link>
-            <Link 
-              to="/testimonials" 
-              className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
-            >
-              Reviews
-            </Link>
-            <Link 
-              to="/contact" 
-              className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
-            >
-              Contact
-            </Link>
+
+            {/* Mobile More Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="text-primary hover:text-secondary transition-colors font-paragraph text-sm flex items-center gap-1">
+                  More <ChevronDown className="h-3 w-3" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-48">
+                <DropdownMenuItem asChild>
+                  <Link to="/testimonials" className="cursor-pointer text-sm">
+                    Reviews
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/contact" className="cursor-pointer text-sm">
+                    Contact
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link to="/recipes" className="cursor-pointer text-sm">
+                    Recipes
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/nutrition" className="cursor-pointer text-sm">
+                    Nutrition Info
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/education" className="cursor-pointer text-sm">
+                    Educational Hub
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link to="/farmers" className="cursor-pointer text-sm">
+                    Farmer Stories
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/certifications" className="cursor-pointer text-sm">
+                    Certifications
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/community" className="cursor-pointer text-sm">
+                    Community Forum
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/loyalty" className="cursor-pointer text-sm">
+                    Loyalty Program
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/subscriptions" className="cursor-pointer text-sm">
+                    Subscriptions
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             {!userRole && (
               <Link 
                 to="/login" 
