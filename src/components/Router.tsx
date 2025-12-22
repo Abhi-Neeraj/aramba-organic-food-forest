@@ -58,6 +58,14 @@ import LoyaltyProgramPage from '@/components/pages/LoyaltyProgramPage';
 import NutritionInfoPage from '@/components/pages/NutritionInfoPage';
 import EducationalHubPage from '@/components/pages/EducationalHubPage';
 import SustainabilityReportPage from '@/components/pages/SustainabilityReportPage';
+import FreshFruitsVegetablesPage from '@/components/pages/FreshFruitsVegetablesPage';
+import GroceryStaplesPage from '@/components/pages/GroceryStaplesPage';
+import DairyBakeryPage from '@/components/pages/DairyBakeryPage';
+import BeveragesPage from '@/components/pages/BeveragesPage';
+import SnacksBrandedFoodsPage from '@/components/pages/SnacksBrandedFoodsPage';
+import PersonalCarePage from '@/components/pages/PersonalCarePage';
+import HomeCarePage from '@/components/pages/HomeCarePage';
+import BabyCarePage from '@/components/pages/BabyCarePage';
 import Layout from '@/components/Layout';
 
 // Main layout component that includes the scroll to top component and the layout component
@@ -277,6 +285,38 @@ const router = createBrowserRouter([
       {
         path: '/sustainability',
         element: <SustainabilityReportPage />,
+      },
+      {
+        path: '/fresh-fruits-vegetables',
+        element: <FreshFruitsVegetablesPage />,
+      },
+      {
+        path: '/grocery-staples',
+        element: <GroceryStaplesPage />,
+      },
+      {
+        path: '/dairy-bakery',
+        element: <DairyBakeryPage />,
+      },
+      {
+        path: '/beverages',
+        element: <BeveragesPage />,
+      },
+      {
+        path: '/snacks-branded-foods',
+        element: <SnacksBrandedFoodsPage />,
+      },
+      {
+        path: '/personal-care',
+        element: <PersonalCarePage />,
+      },
+      {
+        path: '/home-care',
+        element: <HomeCarePage />,
+      },
+      {
+        path: '/baby-care',
+        element: <BabyCarePage />,
       },
       {
         path: "*",

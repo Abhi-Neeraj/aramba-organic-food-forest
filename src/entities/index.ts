@@ -11,12 +11,7 @@ export interface Users {
   _id: string;
   _createdDate?: Date;
   _updatedDate?: Date;
-  /** @wixFieldType text */
-  name?: string;
-  /** @wixFieldType text */
-  email?: string;
 }
-
 
 /**
  * Collection ID: orders
@@ -26,12 +21,7 @@ export interface Orders {
   _id: string;
   _createdDate?: Date;
   _updatedDate?: Date;
-  /** @wixFieldType text */
-  orderId?: string;
-  /** @wixFieldType text */
-  status?: string;
 }
-
 
 /**
  * Collection ID: members
@@ -41,12 +31,7 @@ export interface Members {
   _id: string;
   _createdDate?: Date;
   _updatedDate?: Date;
-  /** @wixFieldType text */
-  memberId?: string;
-  /** @wixFieldType text */
-  name?: string;
 }
-
 
 /**
  * Collection ID: blogposts
