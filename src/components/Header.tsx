@@ -45,7 +45,7 @@ export default function Header() {
           </Link>
 
           {/* Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
             <Link 
               to="/" 
               className="text-primary hover:text-secondary transition-colors font-paragraph"
@@ -207,7 +207,7 @@ export default function Header() {
           </nav>
 
           {/* Actions */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4 shrink-0">
             {/* Search */}
             <Button variant="ghost" size="sm" className="hidden md:flex">
               <Search className="h-5 w-5 text-primary" />
@@ -220,7 +220,8 @@ export default function Header() {
               size="sm"
             >
               <MessageCircle className="h-4 w-4 mr-2" />
-              <span className="hidden sm:inline">Chat</span>
+              <span className="hidden lg:inline">Chat</span>
+
             </Button>
 
             {/* Wishlist */}
