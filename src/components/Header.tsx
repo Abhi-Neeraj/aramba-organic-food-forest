@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { useAuthStore } from '@/stores/authStore';
 import { useNotificationStore } from '@/stores/notificationStore';
 import NotificationCenter from '@/components/NotificationCenter';
+import MobileMenu from '@/components/MobileMenu';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -39,7 +40,7 @@ export default function Header() {
             <div className="text-2xl font-heading font-bold text-primary">
               ARAMBA
             </div>
-            <div className="text-sm font-paragraph text-secondary">
+            <div className="text-sm font-paragraph text-secondary hidden sm:inline">
               • Organic Food Forest
             </div>
           </Link>
@@ -252,7 +253,7 @@ export default function Header() {
 
             {/* Auth Buttons */}
             {userRole ? (
-              <div className="flex items-center space-x-2">
+              <div className="hidden sm:flex items-center space-x-2">
                 <Button asChild variant="outline" size="sm" className="border-primary/20">
                   <Link to={`/dashboard/${userRole}`}>
                     Dashboard
@@ -268,7 +269,7 @@ export default function Header() {
                 </Button>
               </div>
             ) : (
-              <Button asChild size="sm" className="bg-primary hover:bg-primary/90">
+              <Button asChild size="sm" className="hidden sm:flex bg-primary hover:bg-primary/90">
                 <Link to="/login">
                   <LogIn className="h-4 w-4 mr-2" />
                   Sign In
@@ -278,184 +279,20 @@ export default function Header() {
 
             {/* Mini Cart */}
             <MiniCart />
+
+            {/* Mobile Menu */}
+            <MobileMenu 
+              isAuthenticated={isAuthenticated}
+              userRole={userRole}
+              onLogout={handleLogout}
+            />
           </div>
 
           {/* Notification Center */}
           <NotificationCenter isOpen={notificationOpen} onClose={() => setNotificationOpen(false)} />
         </div>
 
-        {/* Mobile Navigation */}
-        <div className="md:hidden pb-4">
-          <nav className="flex items-center justify-center space-x-6 flex-wrap gap-2">
-            <Link 
-              to="/" 
-              className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
-            >
-              Home
-            </Link>
-            <Link 
-              to="/about" 
-              className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
-            >
-              About
-            </Link>
 
-            {/* Mobile Shop Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="text-primary hover:text-secondary transition-colors font-paragraph text-sm flex items-center gap-1">
-                  Shop <ChevronDown className="h-3 w-3" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-48">
-                <DropdownMenuItem asChild>
-                  <Link to="/store" className="cursor-pointer text-sm">
-                    All Products
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link to="/fresh-fruits-vegetables" className="cursor-pointer text-sm">
-                    Fresh Fruits & Vegetables
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/grocery-staples" className="cursor-pointer text-sm">
-                    Grocery & Staples
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/dairy-bakery" className="cursor-pointer text-sm">
-                    Dairy & Bakery
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/beverages" className="cursor-pointer text-sm">
-                    Beverages
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/snacks-branded-foods" className="cursor-pointer text-sm">
-                    Snacks & Branded Foods
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link to="/personal-care" className="cursor-pointer text-sm">
-                    Personal Care
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/home-care" className="cursor-pointer text-sm">
-                    Home Care
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/baby-care" className="cursor-pointer text-sm">
-                    Baby Care
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            <Link 
-              to="/csa" 
-              className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
-            >
-              CSA
-            </Link>
-            <Link 
-              to="/sustainability" 
-              className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
-            >
-              Sustainability
-            </Link>
-            <Link 
-              to="/impact" 
-              className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
-            >
-              Impact
-            </Link>
-            <Link 
-              to="/blog" 
-              className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
-            >
-              Blog
-            </Link>
-
-            {/* Mobile More Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="text-primary hover:text-secondary transition-colors font-paragraph text-sm flex items-center gap-1">
-                  More <ChevronDown className="h-3 w-3" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-48">
-                <DropdownMenuItem asChild>
-                  <Link to="/testimonials" className="cursor-pointer text-sm">
-                    Reviews
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/contact" className="cursor-pointer text-sm">
-                    Contact
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link to="/recipes" className="cursor-pointer text-sm">
-                    Recipes
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/nutrition" className="cursor-pointer text-sm">
-                    Nutrition Info
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/education" className="cursor-pointer text-sm">
-                    Educational Hub
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link to="/farmers" className="cursor-pointer text-sm">
-                    Farmer Stories
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/certifications" className="cursor-pointer text-sm">
-                    Certifications
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/community" className="cursor-pointer text-sm">
-                    Community Forum
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/loyalty" className="cursor-pointer text-sm">
-                    Loyalty Program
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/subscriptions" className="cursor-pointer text-sm">
-                    Subscriptions
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            {!userRole && (
-              <Link 
-                to="/login" 
-                className="text-primary hover:text-secondary transition-colors font-paragraph text-sm"
-              >
-                Sign In
-              </Link>
-            )}
-          </nav>
-        </div>
       </div>
     </header>
   );
