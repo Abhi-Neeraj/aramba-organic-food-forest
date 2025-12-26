@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, MessageCircle, LogIn, Bell, Heart, ChevronDown } from 'lucide-react';
+import { MessageCircle, LogIn, Bell, Heart, ChevronDown } from 'lucide-react';
 import { MiniCart } from '@/wix-verticals/react-pages/react-router/routes/root';
 import { Button } from '@/components/ui/button';
 import { useAuthStore } from '@/stores/authStore';
@@ -209,11 +209,6 @@ export default function Header() {
 
           {/* Actions */}
           <div className="flex items-center gap-2 sm:gap-3 md:gap-4 shrink-0">
-            {/* Search */}
-            <Button variant="ghost" size="sm" className="hidden md:flex">
-              <Search className="h-5 w-5 text-primary" />
-            </Button>
-
             {/* WhatsApp CTA */}
             <Button 
               onClick={handleWhatsAppClick}

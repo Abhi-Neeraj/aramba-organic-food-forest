@@ -4,59 +4,6 @@
  */
 
 /**
- * Collection ID: users
- * Interface for Users
- */
-export interface Users {
-  _id: string;
-  _createdDate?: Date;
-  _updatedDate?: Date;
-  /** @wixFieldType text */
-  email?: string;
-  /** @wixFieldType text */
-  name?: string;
-  /** @wixFieldType text */
-  role?: string;
-}
-
-
-/**
- * Collection ID: orders
- * Interface for Orders
- */
-export interface Orders {
-  _id: string;
-  _createdDate?: Date;
-  _updatedDate?: Date;
-  /** @wixFieldType text */
-  orderId?: string;
-  /** @wixFieldType text */
-  userId?: string;
-  /** @wixFieldType text */
-  status?: string;
-  /** @wixFieldType number */
-  total?: number;
-}
-
-
-/**
- * Collection ID: members
- * Interface for Members
- */
-export interface Members {
-  _id: string;
-  _createdDate?: Date;
-  _updatedDate?: Date;
-  /** @wixFieldType text */
-  memberId?: string;
-  /** @wixFieldType text */
-  email?: string;
-  /** @wixFieldType text */
-  name?: string;
-}
-
-
-/**
  * Collection ID: blogposts
  * Interface for BlogPosts
  */
@@ -101,6 +48,39 @@ export interface Certifications {
   certificationUrl?: string;
   /** @wixFieldType date */
   dateIssued?: Date | string;
+}
+
+
+/**
+ * Collection ID: users
+ * Interface for Users
+ */
+export interface Users {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+}
+
+
+/**
+ * Collection ID: orders
+ * Interface for Orders
+ */
+export interface Orders {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+}
+
+
+/**
+ * Collection ID: members
+ * Interface for Members
+ */
+export interface Members {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
 }
 
 
