@@ -4,30 +4,51 @@
  */
 
 /**
- * Placeholder interface for Users (referenced but not defined in CMS)
+ * Collection ID: users
+ * Interface for Users
  */
 export interface Users {
   _id: string;
   _createdDate?: Date;
   _updatedDate?: Date;
+  /** @wixFieldType text */
+  name?: string;
+  /** @wixFieldType text */
+  email?: string;
+  /** @wixFieldType text */
+  role?: string;
 }
 
 /**
- * Placeholder interface for Orders (referenced but not defined in CMS)
+ * Collection ID: orders
+ * Interface for Orders
  */
 export interface Orders {
   _id: string;
   _createdDate?: Date;
   _updatedDate?: Date;
+  /** @wixFieldType text */
+  orderId?: string;
+  /** @wixFieldType text */
+  status?: string;
+  /** @wixFieldType number */
+  totalAmount?: number;
 }
 
 /**
- * Placeholder interface for Members (referenced but not defined in CMS)
+ * Collection ID: members
+ * Interface for Members
  */
 export interface Members {
   _id: string;
   _createdDate?: Date;
   _updatedDate?: Date;
+  /** @wixFieldType text */
+  memberId?: string;
+  /** @wixFieldType text */
+  name?: string;
+  /** @wixFieldType text */
+  email?: string;
 }
 
 /**

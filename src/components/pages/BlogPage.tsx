@@ -14,18 +14,28 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.12,
       delayChildren: 0.2,
     },
   },
-};
+} as const;
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: 'easeOut' },
+    transition: { duration: 0.7, ease: 'easeOut' as const },
+  },
+} as const;
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.6, ease: 'easeOut' as const },
   },
 } as const;
 
@@ -53,10 +63,10 @@ export default function BlogPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-sand-lighter">
       {/* Hero Section */}
       <motion.section 
-        className="py-16 bg-gradient-to-br from-green-50 to-white"
+        className="py-20 bg-gradient-to-br from-charcoal via-charcoal-dark to-brown-dark text-sand grain-overlay"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -69,13 +79,13 @@ export default function BlogPage() {
             animate="visible"
           >
             <motion.h1 
-              className="text-5xl md:text-6xl font-heading font-bold text-green-900 mb-4"
+              className="text-6xl md:text-7xl font-heading font-bold text-sand mb-6"
               variants={itemVariants}
             >
               ARAMBA Blog
             </motion.h1>
             <motion.p 
-              className="text-xl text-gray-600 font-paragraph max-w-2xl mx-auto"
+              className="text-xl text-sand/80 font-light max-w-2xl mx-auto"
               variants={itemVariants}
             >
               Stories, tips, and insights about organic farming, sustainable living, and healthy eating
@@ -86,7 +96,7 @@ export default function BlogPage() {
 
       {/* Blog Posts Grid */}
       <motion.section 
-        className="py-20 bg-white"
+        className="py-24 bg-sand-lighter"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -95,11 +105,11 @@ export default function BlogPage() {
         <div className="max-w-7xl mx-auto px-6">
           {loading ? (
             <div className="text-center py-12">
-              <p className="text-gray-600 font-paragraph">Loading blog posts...</p>
+              <p className="text-charcoal font-light">Loading blog posts...</p>
             </div>
           ) : posts.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-gray-600 font-paragraph text-lg">No blog posts yet. Check back soon!</p>
+              <p className="text-charcoal font-light text-lg">No blog posts yet. Check back soon!</p>
             </div>
           ) : (
             <motion.div 
@@ -112,27 +122,31 @@ export default function BlogPage() {
               {posts.map((post) => (
                 <motion.div
                   key={post._id}
-                  variants={itemVariants}
-                  whileHover={{ y: -8 }}
+                  variants={cardVariants}
+                  whileHover={{ y: -12, boxShadow: '0 20px 40px rgba(193, 122, 74, 0.15)' }}
                   transition={{ duration: 0.3 }}
                 >
                   <Link to={`/blog/${post.slug}`}>
-                    <Card className="h-full overflow-hidden border border-gray-200 hover:border-green-400 hover:shadow-lg transition-all duration-300 cursor-pointer">
+                    <Card className="h-full overflow-hidden border-2 border-brown/20 hover:border-copper transition-all duration-300 cursor-pointer bg-white">
                       <CardContent className="p-0">
                         {/* Featured Image */}
-                        <div className="relative h-48 overflow-hidden bg-gray-100">
+                        <motion.div 
+                          className="relative h-48 overflow-hidden bg-brown/5"
+                          whileHover={{ scale: 1.08 }}
+                          transition={{ duration: 0.4 }}
+                        >
                           <Image
                             src={post.featuredImage || 'https://via.placeholder.com/400x300?text=Blog'}
                             alt={post.title || 'Blog post'}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover"
                             width={400}
                           />
-                        </div>
+                        </motion.div>
 
                         {/* Content */}
                         <div className="p-6">
                           {/* Meta Info */}
-                          <div className="flex items-center gap-4 text-sm text-gray-500 font-paragraph mb-3">
+                          <div className="flex items-center gap-4 text-xs text-brown/70 font-light mb-4 uppercase tracking-wider">
                             {post.publishDate && (
                               <div className="flex items-center gap-1">
                                 <Calendar className="h-4 w-4" />
@@ -148,23 +162,29 @@ export default function BlogPage() {
                           </div>
 
                           {/* Title */}
-                          <h3 className="text-xl font-heading font-semibold text-green-900 mb-3 line-clamp-2 hover:text-green-700 transition-colors">
+                          <h3 className="text-xl font-heading font-bold text-charcoal mb-3 line-clamp-2 hover:text-copper transition-colors">
                             {post.title}
                           </h3>
 
                           {/* Excerpt */}
-                          <p className="text-gray-600 font-paragraph text-sm line-clamp-3 mb-4">
+                          <p className="text-charcoal font-light text-sm line-clamp-3 mb-6">
                             {post.excerpt}
                           </p>
 
                           {/* Read More Button */}
-                          <Button 
-                            variant="outline" 
-                            className="border-green-700 text-green-700 hover:bg-green-50 w-full"
+                          <motion.div
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            transition={{ duration: 0.2 }}
                           >
-                            Read More
-                            <ArrowRight className="ml-2 h-4 w-4" />
-                          </Button>
+                            <Button 
+                              variant="outline" 
+                              className="border-2 border-copper text-copper hover:bg-copper hover:text-white w-full uppercase tracking-wider font-bold"
+                            >
+                              Read More
+                              <ArrowRight className="ml-2 h-4 w-4" />
+                            </Button>
+                          </motion.div>
                         </div>
                       </CardContent>
                     </Card>
@@ -178,7 +198,7 @@ export default function BlogPage() {
 
       {/* CTA Section */}
       <motion.section 
-        className="py-16 bg-gradient-to-br from-green-900 to-green-800 text-white"
+        className="py-20 bg-gradient-to-br from-charcoal via-charcoal-dark to-brown-dark text-sand grain-overlay"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -186,7 +206,7 @@ export default function BlogPage() {
       >
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.h2 
-            className="text-4xl font-heading font-bold mb-4"
+            className="text-4xl md:text-5xl font-heading font-bold mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -195,7 +215,7 @@ export default function BlogPage() {
             Ready to Shop Organic?
           </motion.h2>
           <motion.p 
-            className="text-lg text-green-100 mb-8 font-paragraph max-w-2xl mx-auto"
+            className="text-lg text-sand/80 mb-10 font-light max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -205,11 +225,12 @@ export default function BlogPage() {
           </motion.p>
           <motion.div
             whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.2 }}
           >
             <Button 
               asChild 
-              className="bg-white text-green-900 hover:bg-gray-100 text-lg font-heading px-8 py-6"
+              className="bg-copper hover:bg-copper-light text-white text-lg font-heading py-6 uppercase tracking-wider shadow-lg hover:shadow-xl"
             >
               <Link to="/store">Shop Now</Link>
             </Button>

@@ -19,18 +19,31 @@ export default {
                 '9xl': ['8rem', { lineHeight: '1', letterSpacing: '-0.025em', fontWeight: '700' }],
             },
             fontFamily: {
-                heading: "playfair display",
-                paragraph: "playfair display"
+                heading: "'Slab Serif', 'Courier Prime', serif",
+                paragraph: "'Inter', 'Segoe UI', sans-serif"
             },
             colors: {
-                terracotta: '#B45A35',
-                destructive: '#dc2626',
+                // Premium warm palette
+                charcoal: '#1a1410',
+                'charcoal-dark': '#0f0c0a',
+                sand: '#e8dcc8',
+                'sand-light': '#f5f1e8',
+                'sand-lighter': '#faf8f4',
+                brown: '#8b6f47',
+                'brown-dark': '#6b5637',
+                copper: '#c17a4a',
+                'copper-light': '#d89060',
+                'burnt-orange': '#d4633a',
+                'olive-gold': '#a89a4a',
+                
+                // Semantic colors
+                destructive: '#d4633a',
                 'destructive-foreground': '#ffffff',
-                background: '#F3EAD8',
-                secondary: '#4B8B3A',
-                'secondary-foreground': '#F3EAD8',
-                'primary-foreground': '#F3EAD8',
-                primary: '#1F5A3A'
+                background: '#faf8f4',
+                secondary: '#8b6f47',
+                'secondary-foreground': '#ffffff',
+                'primary-foreground': '#ffffff',
+                primary: '#1a1410'
             },
         },
     },
