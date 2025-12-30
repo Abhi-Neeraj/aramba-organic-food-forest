@@ -19,24 +19,13 @@ import { Cart } from '@/wix-verticals/react-pages/react-router/routes/cart';
 // Import page components
 import HomePage from '@/components/pages/HomePage';
 import ContactPage from '@/components/pages/ContactPage';
-import EnhancedBlogPage from '@/components/pages/EnhancedBlogPage';
+import BlogPage from '@/components/pages/BlogPage';
 import BlogPostPage from '@/components/pages/BlogPostPage';
 import CertificationsPage from '@/components/pages/CertificationsPage';
 import LoginPage from '@/components/pages/LoginPage';
-import SignupPage from '@/components/pages/SignupPage';
 import CustomerDashboardPage from '@/components/pages/CustomerDashboardPage';
 import FarmerDashboardPage from '@/components/pages/FarmerDashboardPage';
 import AdminDashboardPage from '@/components/pages/AdminDashboardPage';
-import AdminProductManagementPage from '@/components/pages/AdminProductManagementPage';
-import AdminProductRequestsPage from '@/components/pages/AdminProductRequestsPage';
-import AdminAnalyticsDashboardPage from '@/components/pages/AdminAnalyticsDashboardPage';
-import FarmerProductRequestPage from '@/components/pages/FarmerProductRequestPage';
-import FarmerAvailabilityPage from '@/components/pages/FarmerAvailabilityPage';
-import FarmerOrderFulfillmentPage from '@/components/pages/FarmerOrderFulfillmentPage';
-import CustomerOrdersPage from '@/components/pages/CustomerOrdersPage';
-import DeliveryAgentDashboardPage from '@/components/pages/DeliveryAgentDashboardPage';
-import DeliveryAgentOrdersPage from '@/components/pages/DeliveryAgentOrdersPage';
-import DeliveryAgentEarningsPage from '@/components/pages/DeliveryAgentEarningsPage';
 import Layout from '@/components/Layout';
 
 // Main layout component that includes the scroll to top component and the layout component
@@ -107,7 +96,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/blog',
-        element: <EnhancedBlogPage />,
+        element: <BlogPage />,
       },
       {
         path: '/blog/:slug',
@@ -122,10 +111,6 @@ const router = createBrowserRouter([
         element: <LoginPage />,
       },
       {
-        path: '/signup/:role',
-        element: <SignupPage />,
-      },
-      {
         path: '/dashboard/customer',
         element: <CustomerDashboardPage />,
       },
@@ -136,46 +121,6 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/admin',
         element: <AdminDashboardPage />,
-      },
-      {
-        path: '/admin/products',
-        element: <AdminProductManagementPage />,
-      },
-      {
-        path: '/admin/product-requests',
-        element: <AdminProductRequestsPage />,
-      },
-      {
-        path: '/admin/analytics',
-        element: <AdminAnalyticsDashboardPage />,
-      },
-      {
-        path: '/farmer/product-requests',
-        element: <FarmerProductRequestPage />,
-      },
-      {
-        path: '/farmer/availability',
-        element: <FarmerAvailabilityPage />,
-      },
-      {
-        path: '/farmer/orders',
-        element: <FarmerOrderFulfillmentPage />,
-      },
-      {
-        path: '/customer/orders',
-        element: <CustomerOrdersPage />,
-      },
-      {
-        path: '/dashboard/delivery-agent',
-        element: <DeliveryAgentDashboardPage />,
-      },
-      {
-        path: '/delivery-agent/orders',
-        element: <DeliveryAgentOrdersPage />,
-      },
-      {
-        path: '/delivery-agent/earnings',
-        element: <DeliveryAgentEarningsPage />,
       },
       {
         path: "*",

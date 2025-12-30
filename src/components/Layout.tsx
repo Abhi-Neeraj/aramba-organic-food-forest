@@ -13,7 +13,7 @@ export default function Layout() {
   }, [initializeFromStorage]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       <Header />
       <main>
         <Outlet />
