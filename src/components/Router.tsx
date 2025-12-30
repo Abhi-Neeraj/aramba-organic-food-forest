@@ -18,18 +18,10 @@ import { Cart } from '@/wix-verticals/react-pages/react-router/routes/cart';
 
 // Import page components
 import HomePage from '@/components/pages/HomePage';
-import AboutPage from '@/components/pages/AboutPage';
-import SustainabilityPage from '@/components/pages/SustainabilityPage';
-import TestimonialsPage from '@/components/pages/TestimonialsPage';
 import ContactPage from '@/components/pages/ContactPage';
-import CSAPage from '@/components/pages/CSAPage';
-import ResourcesPage from '@/components/pages/ResourcesPage';
-import ImpactDashboardPage from '@/components/pages/ImpactDashboardPage';
-import BlogPage from '@/components/pages/BlogPage';
 import EnhancedBlogPage from '@/components/pages/EnhancedBlogPage';
 import BlogPostPage from '@/components/pages/BlogPostPage';
-import ProductCatalogPage from '@/components/pages/ProductCatalogPage';
-import OurTeamPage from '@/components/pages/OurTeamPage';
+import CertificationsPage from '@/components/pages/CertificationsPage';
 import LoginPage from '@/components/pages/LoginPage';
 import SignupPage from '@/components/pages/SignupPage';
 import CustomerDashboardPage from '@/components/pages/CustomerDashboardPage';
@@ -45,27 +37,6 @@ import CustomerOrdersPage from '@/components/pages/CustomerOrdersPage';
 import DeliveryAgentDashboardPage from '@/components/pages/DeliveryAgentDashboardPage';
 import DeliveryAgentOrdersPage from '@/components/pages/DeliveryAgentOrdersPage';
 import DeliveryAgentEarningsPage from '@/components/pages/DeliveryAgentEarningsPage';
-import WishlistPage from '@/components/pages/WishlistPage';
-import ProductReviewsPage from '@/components/pages/ProductReviewsPage';
-import PolicyPage from '@/components/pages/PolicyPage';
-import RecipeCollectionPage from '@/components/pages/RecipeCollectionPage';
-import SubscriptionDashboardPage from '@/components/pages/SubscriptionDashboardPage';
-import FarmerStoriesPage from '@/components/pages/FarmerStoriesPage';
-import CertificationsPage from '@/components/pages/CertificationsPage';
-import DeliveryTrackerPage from '@/components/pages/DeliveryTrackerPage';
-import CommunityForumPage from '@/components/pages/CommunityForumPage';
-import LoyaltyProgramPage from '@/components/pages/LoyaltyProgramPage';
-import NutritionInfoPage from '@/components/pages/NutritionInfoPage';
-import EducationalHubPage from '@/components/pages/EducationalHubPage';
-import SustainabilityReportPage from '@/components/pages/SustainabilityReportPage';
-import FreshFruitsVegetablesPage from '@/components/pages/FreshFruitsVegetablesPage';
-import GroceryStaplesPage from '@/components/pages/GroceryStaplesPage';
-import DairyBakeryPage from '@/components/pages/DairyBakeryPage';
-import BeveragesPage from '@/components/pages/BeveragesPage';
-import SnacksBrandedFoodsPage from '@/components/pages/SnacksBrandedFoodsPage';
-import PersonalCarePage from '@/components/pages/PersonalCarePage';
-import HomeCarePage from '@/components/pages/HomeCarePage';
-import BabyCarePage from '@/components/pages/BabyCarePage';
 import Layout from '@/components/Layout';
 
 // Main layout component that includes the scroll to top component and the layout component
@@ -90,32 +61,8 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: '/about',
-        element: <AboutPage />,
-      },
-      {
-        path: '/sustainability',
-        element: <SustainabilityPage />,
-      },
-      {
-        path: '/testimonials',
-        element: <TestimonialsPage />,
-      },
-      {
         path: '/contact',
         element: <ContactPage />,
-      },
-      {
-        path: '/csa',
-        element: <CSAPage />,
-      },
-      {
-        path: '/resources',
-        element: <ResourcesPage />,
-      },
-      {
-        path: '/impact',
-        element: <ImpactDashboardPage />,
       },
       {
         path: '/products/:slug',
@@ -167,12 +114,8 @@ const router = createBrowserRouter([
         element: <BlogPostPage />,
       },
       {
-        path: '/products-catalog',
-        element: <ProductCatalogPage />,
-      },
-      {
-        path: '/our-team',
-        element: <OurTeamPage />,
+        path: '/certifications',
+        element: <CertificationsPage />,
       },
       {
         path: '/login',
@@ -233,90 +176,6 @@ const router = createBrowserRouter([
       {
         path: '/delivery-agent/earnings',
         element: <DeliveryAgentEarningsPage />,
-      },
-      {
-        path: '/wishlist',
-        element: <WishlistPage />,
-      },
-      {
-        path: '/products/:productId/reviews',
-        element: <ProductReviewsPage />,
-      },
-      {
-        path: '/policy',
-        element: <PolicyPage />,
-      },
-      {
-        path: '/recipes',
-        element: <RecipeCollectionPage />,
-      },
-      {
-        path: '/subscriptions',
-        element: <SubscriptionDashboardPage />,
-      },
-      {
-        path: '/farmers',
-        element: <FarmerStoriesPage />,
-      },
-      {
-        path: '/certifications',
-        element: <CertificationsPage />,
-      },
-      {
-        path: '/delivery-tracker',
-        element: <DeliveryTrackerPage />,
-      },
-      {
-        path: '/community',
-        element: <CommunityForumPage />,
-      },
-      {
-        path: '/loyalty',
-        element: <LoyaltyProgramPage />,
-      },
-      {
-        path: '/nutrition',
-        element: <NutritionInfoPage />,
-      },
-      {
-        path: '/education',
-        element: <EducationalHubPage />,
-      },
-      {
-        path: '/sustainability',
-        element: <SustainabilityReportPage />,
-      },
-      {
-        path: '/fresh-fruits-vegetables',
-        element: <FreshFruitsVegetablesPage />,
-      },
-      {
-        path: '/grocery-staples',
-        element: <GroceryStaplesPage />,
-      },
-      {
-        path: '/dairy-bakery',
-        element: <DairyBakeryPage />,
-      },
-      {
-        path: '/beverages',
-        element: <BeveragesPage />,
-      },
-      {
-        path: '/snacks-branded-foods',
-        element: <SnacksBrandedFoodsPage />,
-      },
-      {
-        path: '/personal-care',
-        element: <PersonalCarePage />,
-      },
-      {
-        path: '/home-care',
-        element: <HomeCarePage />,
-      },
-      {
-        path: '/baby-care',
-        element: <BabyCarePage />,
       },
       {
         path: "*",

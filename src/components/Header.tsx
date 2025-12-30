@@ -54,157 +54,23 @@ export default function Header() {
               Home
             </Link>
             <Link 
-              to="/about" 
-              className="text-primary hover:text-secondary transition-colors font-paragraph"
-            >
-              About
-            </Link>
-
-            {/* Shop by Category Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="text-primary hover:text-secondary transition-colors font-paragraph flex items-center gap-1">
-                  Shop <ChevronDown className="h-4 w-4" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-56">
-                <DropdownMenuItem asChild>
-                  <Link to="/store" className="cursor-pointer">
-                    All Products
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link to="/fresh-fruits-vegetables" className="cursor-pointer">
-                    Fresh Fruits & Vegetables
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/grocery-staples" className="cursor-pointer">
-                    Grocery & Staples
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/dairy-bakery" className="cursor-pointer">
-                    Dairy & Bakery
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/beverages" className="cursor-pointer">
-                    Beverages
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/snacks-branded-foods" className="cursor-pointer">
-                    Snacks & Branded Foods
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link to="/personal-care" className="cursor-pointer">
-                    Personal Care
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/home-care" className="cursor-pointer">
-                    Home Care
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/baby-care" className="cursor-pointer">
-                    Baby Care
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            <Link 
-              to="/csa" 
-              className="text-primary hover:text-secondary transition-colors font-paragraph"
-            >
-              CSA
-            </Link>
-            <Link 
-              to="/sustainability" 
-              className="text-primary hover:text-secondary transition-colors font-paragraph"
-            >
-              Sustainability
-            </Link>
-            <Link 
-              to="/impact" 
-              className="text-primary hover:text-secondary transition-colors font-paragraph"
-            >
-              Impact
-            </Link>
-            <Link 
               to="/blog" 
               className="text-primary hover:text-secondary transition-colors font-paragraph"
             >
               Blog
             </Link>
-
-            {/* More Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="text-primary hover:text-secondary transition-colors font-paragraph flex items-center gap-1">
-                  More <ChevronDown className="h-4 w-4" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-56">
-                <DropdownMenuItem asChild>
-                  <Link to="/testimonials" className="cursor-pointer">
-                    Reviews
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/contact" className="cursor-pointer">
-                    Contact
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link to="/recipes" className="cursor-pointer">
-                    Recipes
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/nutrition" className="cursor-pointer">
-                    Nutrition Info
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/education" className="cursor-pointer">
-                    Educational Hub
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link to="/farmers" className="cursor-pointer">
-                    Farmer Stories
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/certifications" className="cursor-pointer">
-                    Certifications
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/community" className="cursor-pointer">
-                    Community Forum
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/loyalty" className="cursor-pointer">
-                    Loyalty Program
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/subscriptions" className="cursor-pointer">
-                    Subscriptions
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Link 
+              to="/contact" 
+              className="text-primary hover:text-secondary transition-colors font-paragraph"
+            >
+              Contact
+            </Link>
+            <Link 
+              to="/certifications" 
+              className="text-primary hover:text-secondary transition-colors font-paragraph"
+            >
+              Certifications
+            </Link>
           </nav>
 
           {/* Actions */}

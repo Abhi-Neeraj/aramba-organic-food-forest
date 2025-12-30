@@ -134,115 +134,6 @@ export default function MobileMenu({ isAuthenticated, userRole, onLogout }: Mobi
               </Link>
 
               <Link
-                to="/about"
-                onClick={handleMenuItemClick}
-                className="block px-4 py-3 text-primary hover:bg-primary/5 rounded-lg transition-colors font-paragraph"
-              >
-                About
-              </Link>
-
-              {/* Shop Submenu */}
-              <Collapsible>
-                <CollapsibleTrigger asChild>
-                  <button className="w-full flex items-center justify-between px-4 py-3 text-primary hover:bg-primary/5 rounded-lg transition-colors font-paragraph">
-                    <span>Shop</span>
-                    <ChevronDown className="h-4 w-4 transition-transform" />
-                  </button>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="space-y-1 pl-4 mt-1">
-                  <Link
-                    to="/store"
-                    onClick={handleMenuItemClick}
-                    className="block px-4 py-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                  >
-                    All Products
-                  </Link>
-                  <div className="border-t border-primary/10 my-2" />
-                  <Link
-                    to="/fresh-fruits-vegetables"
-                    onClick={handleMenuItemClick}
-                    className="block px-4 py-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                  >
-                    Fresh Fruits & Vegetables
-                  </Link>
-                  <Link
-                    to="/grocery-staples"
-                    onClick={handleMenuItemClick}
-                    className="block px-4 py-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                  >
-                    Grocery & Staples
-                  </Link>
-                  <Link
-                    to="/dairy-bakery"
-                    onClick={handleMenuItemClick}
-                    className="block px-4 py-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                  >
-                    Dairy & Bakery
-                  </Link>
-                  <Link
-                    to="/beverages"
-                    onClick={handleMenuItemClick}
-                    className="block px-4 py-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                  >
-                    Beverages
-                  </Link>
-                  <Link
-                    to="/snacks-branded-foods"
-                    onClick={handleMenuItemClick}
-                    className="block px-4 py-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                  >
-                    Snacks & Branded Foods
-                  </Link>
-                  <div className="border-t border-primary/10 my-2" />
-                  <Link
-                    to="/personal-care"
-                    onClick={handleMenuItemClick}
-                    className="block px-4 py-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                  >
-                    Personal Care
-                  </Link>
-                  <Link
-                    to="/home-care"
-                    onClick={handleMenuItemClick}
-                    className="block px-4 py-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                  >
-                    Home Care
-                  </Link>
-                  <Link
-                    to="/baby-care"
-                    onClick={handleMenuItemClick}
-                    className="block px-4 py-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                  >
-                    Baby Care
-                  </Link>
-                </CollapsibleContent>
-              </Collapsible>
-
-              <Link
-                to="/csa"
-                onClick={handleMenuItemClick}
-                className="block px-4 py-3 text-primary hover:bg-primary/5 rounded-lg transition-colors font-paragraph"
-              >
-                CSA
-              </Link>
-
-              <Link
-                to="/sustainability"
-                onClick={handleMenuItemClick}
-                className="block px-4 py-3 text-primary hover:bg-primary/5 rounded-lg transition-colors font-paragraph"
-              >
-                Sustainability
-              </Link>
-
-              <Link
-                to="/impact"
-                onClick={handleMenuItemClick}
-                className="block px-4 py-3 text-primary hover:bg-primary/5 rounded-lg transition-colors font-paragraph"
-              >
-                Impact
-              </Link>
-
-              <Link
                 to="/blog"
                 onClick={handleMenuItemClick}
                 className="block px-4 py-3 text-primary hover:bg-primary/5 rounded-lg transition-colors font-paragraph"
@@ -250,89 +141,21 @@ export default function MobileMenu({ isAuthenticated, userRole, onLogout }: Mobi
                 Blog
               </Link>
 
-              {/* More Submenu */}
-              <Collapsible>
-                <CollapsibleTrigger asChild>
-                  <button className="w-full flex items-center justify-between px-4 py-3 text-primary hover:bg-primary/5 rounded-lg transition-colors font-paragraph">
-                    <span>More</span>
-                    <ChevronDown className="h-4 w-4 transition-transform" />
-                  </button>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="space-y-1 pl-4 mt-1">
-                  <Link
-                    to="/testimonials"
-                    onClick={handleMenuItemClick}
-                    className="block px-4 py-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                  >
-                    Reviews
-                  </Link>
-                  <Link
-                    to="/contact"
-                    onClick={handleMenuItemClick}
-                    className="block px-4 py-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                  >
-                    Contact
-                  </Link>
-                  <div className="border-t border-primary/10 my-2" />
-                  <Link
-                    to="/recipes"
-                    onClick={handleMenuItemClick}
-                    className="block px-4 py-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                  >
-                    Recipes
-                  </Link>
-                  <Link
-                    to="/nutrition"
-                    onClick={handleMenuItemClick}
-                    className="block px-4 py-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                  >
-                    Nutrition Info
-                  </Link>
-                  <Link
-                    to="/education"
-                    onClick={handleMenuItemClick}
-                    className="block px-4 py-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                  >
-                    Educational Hub
-                  </Link>
-                  <div className="border-t border-primary/10 my-2" />
-                  <Link
-                    to="/farmers"
-                    onClick={handleMenuItemClick}
-                    className="block px-4 py-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                  >
-                    Farmer Stories
-                  </Link>
-                  <Link
-                    to="/certifications"
-                    onClick={handleMenuItemClick}
-                    className="block px-4 py-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                  >
-                    Certifications
-                  </Link>
-                  <Link
-                    to="/community"
-                    onClick={handleMenuItemClick}
-                    className="block px-4 py-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                  >
-                    Community Forum
-                  </Link>
-                  <Link
-                    to="/loyalty"
-                    onClick={handleMenuItemClick}
-                    className="block px-4 py-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                  >
-                    Loyalty Program
-                  </Link>
-                  <Link
-                    to="/subscriptions"
-                    onClick={handleMenuItemClick}
-                    className="block px-4 py-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                  >
-                    Subscriptions
-                  </Link>
-                </CollapsibleContent>
-              </Collapsible>
+              <Link
+                to="/contact"
+                onClick={handleMenuItemClick}
+                className="block px-4 py-3 text-primary hover:bg-primary/5 rounded-lg transition-colors font-paragraph"
+              >
+                Contact
+              </Link>
+
+              <Link
+                to="/certifications"
+                onClick={handleMenuItemClick}
+                className="block px-4 py-3 text-primary hover:bg-primary/5 rounded-lg transition-colors font-paragraph"
+              >
+                Certifications
+              </Link>
 
               {/* Divider */}
               <div className="border-t border-primary/10 my-4" />
