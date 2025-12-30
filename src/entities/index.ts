@@ -15,8 +15,6 @@ export interface Users {
   name?: string;
   /** @wixFieldType text */
   email?: string;
-  /** @wixFieldType text */
-  role?: string;
 }
 
 /**
@@ -31,8 +29,6 @@ export interface Orders {
   orderId?: string;
   /** @wixFieldType text */
   status?: string;
-  /** @wixFieldType number */
-  totalAmount?: number;
 }
 
 /**
@@ -47,8 +43,6 @@ export interface Members {
   memberId?: string;
   /** @wixFieldType text */
   name?: string;
-  /** @wixFieldType text */
-  email?: string;
 }
 
 /**

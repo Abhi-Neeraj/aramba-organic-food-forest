@@ -4,8 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Premium Typography */
-@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+/* Bold Typography System */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 /* Global Styles */
 html {
@@ -13,38 +13,44 @@ html {
 }
 
 body {
-  @apply bg-sand-lighter text-charcoal;
+  @apply bg-black text-cream;
   font-family: 'Inter', 'Segoe UI', sans-serif;
 }
 
-/* Heading Styles */
+/* Heading Styles - BOLD & COMMANDING */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Courier Prime', monospace;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.1;
 }
 
 h1 {
-  @apply text-6xl md:text-7xl lg:text-8xl;
+  @apply text-6xl md:text-7xl lg:text-8xl xl:text-9xl;
 }
 
 h2 {
-  @apply text-4xl md:text-5xl lg:text-6xl;
+  @apply text-5xl md:text-6xl lg:text-7xl;
 }
 
 h3 {
-  @apply text-2xl md:text-3xl lg:text-4xl;
+  @apply text-3xl md:text-4xl lg:text-5xl;
+}
+
+h4 {
+  @apply text-2xl md:text-3xl;
 }
 
 /* Button Styles */
 button, [role="button"] {
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 600;
+  letter-spacing: 0.15em;
+  font-weight: 700;
   font-size: 0.875rem;
 }
 
-/* Subtle Grain Texture */
+/* Raw Texture Overlay */
 .grain-overlay {
   position: relative;
 }
@@ -54,9 +60,9 @@ button, [role="button"] {
   position: absolute;
   inset: 0;
   background-image: 
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise" /></filter><rect width="100" height="100" fill="rgba(0,0,0,0.02)" filter="url(%23noise)" /></svg>');
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise" /></filter><rect width="100" height="100" fill="rgba(255,255,255,0.03)" filter="url(%23noise)" /></svg>');
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 /* Smooth Transitions */
@@ -68,15 +74,33 @@ button, [role="button"] {
 input:focus,
 textarea:focus,
 select:focus {
-  @apply outline-none ring-2 ring-copper ring-offset-2 ring-offset-sand-lighter;
+  @apply outline-none ring-2 ring-rust ring-offset-2 ring-offset-black;
 }
 
 /* Link Styles */
 a {
-  @apply text-copper hover:text-copper-light transition-colors;
+  @apply text-rust hover:text-rust-light transition-colors;
 }
 
 /* Selection */
 ::selection {
-  @apply bg-copper text-white;
+  @apply bg-rust text-cream;
+}
+
+/* Heavy Shadows for Depth */
+.shadow-heavy {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.shadow-heavy-lg {
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9);
+}
+
+/* Glow Effect */
+.glow-rust {
+  box-shadow: 0 0 30px rgba(212, 102, 58, 0.4);
+}
+
+.glow-rust-intense {
+  box-shadow: 0 0 50px rgba(212, 102, 58, 0.6);
 }

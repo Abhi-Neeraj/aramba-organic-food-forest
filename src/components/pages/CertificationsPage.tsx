@@ -13,28 +13,28 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.12,
       delayChildren: 0.2,
     },
   },
-} as const;
+};
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: 'easeOut' as const },
+    transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 } as const;
 
 const badgeVariants = {
-  hidden: { opacity: 0, scale: 0.6, rotate: -20 },
+  hidden: { opacity: 0, scale: 0.7, rotate: -30 },
   visible: {
     opacity: 1,
     scale: 1,
     rotate: 0,
-    transition: { duration: 0.6, ease: 'easeOut' as const },
+    transition: { duration: 0.7, ease: [0.34, 1.56, 0.64, 1] },
   },
 } as const;
 
@@ -58,10 +58,10 @@ export default function CertificationsPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-sand-lighter">
+    <div className="min-h-screen bg-black">
       {/* Hero Section */}
       <motion.section 
-        className="py-20 bg-gradient-to-br from-charcoal via-charcoal-dark to-brown-dark text-sand grain-overlay"
+        className="py-24 bg-charcoal grain-overlay border-b-2 border-rust/30"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -74,16 +74,16 @@ export default function CertificationsPage() {
             animate="visible"
           >
             <motion.h1 
-              className="text-6xl md:text-7xl font-heading font-bold text-sand mb-6"
+              className="text-7xl md:text-8xl lg:text-9xl font-heading font-bold text-cream mb-8 uppercase"
               variants={itemVariants}
             >
-              Certified & Trusted
+              CERTIFIED & VERIFIED
             </motion.h1>
             <motion.p 
-              className="text-xl text-sand/80 font-light max-w-2xl mx-auto"
+              className="text-2xl text-cream/80 font-light max-w-3xl mx-auto"
               variants={itemVariants}
             >
-              Our commitment to quality and sustainability is backed by recognized certifications and rigorous standards
+              Proof. Not promises. Our certifications represent rigorous standards and verified quality.
             </motion.p>
           </motion.div>
         </div>
@@ -91,7 +91,7 @@ export default function CertificationsPage() {
 
       {/* Certifications Grid */}
       <motion.section 
-        className="py-24 bg-sand-lighter"
+        className="py-32 bg-black"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -99,16 +99,16 @@ export default function CertificationsPage() {
       >
         <div className="max-w-7xl mx-auto px-6">
           {loading ? (
-            <div className="text-center py-12">
-              <p className="text-charcoal font-light">Loading certifications...</p>
+            <div className="text-center py-20">
+              <p className="text-cream/70 font-light text-lg">Loading certifications...</p>
             </div>
           ) : certifications.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-charcoal font-light text-lg">No certifications available yet.</p>
+            <div className="text-center py-20">
+              <p className="text-cream/70 font-light text-lg">No certifications available yet.</p>
             </div>
           ) : (
             <motion.div 
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12"
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
@@ -119,16 +119,16 @@ export default function CertificationsPage() {
                   key={cert._id}
                   variants={badgeVariants}
                   custom={index}
-                  whileHover={{ y: -12, boxShadow: '0 20px 40px rgba(193, 122, 74, 0.15)' }}
-                  transition={{ duration: 0.3 }}
+                  whileHover={{ y: -16, boxShadow: '0 40px 80px rgba(212, 102, 58, 0.3)' }}
+                  transition={{ duration: 0.4 }}
                 >
-                  <Card className="h-full border-2 border-brown/20 hover:border-copper transition-all duration-300 bg-white overflow-hidden">
-                    <CardContent className="p-8">
+                  <Card className="h-full border-0 bg-charcoal-light shadow-heavy hover:shadow-heavy-lg transition-all duration-300">
+                    <CardContent className="p-12">
                       {/* Logo */}
                       {cert.logo && (
                         <motion.div 
-                          className="mb-8 flex justify-center"
-                          whileHover={{ scale: 1.15 }}
+                          className="mb-10 flex justify-center"
+                          whileHover={{ scale: 1.2 }}
                           transition={{ duration: 0.3 }}
                         >
                           <Image
@@ -141,25 +141,25 @@ export default function CertificationsPage() {
                       )}
 
                       {/* Title */}
-                      <h3 className="text-2xl font-heading font-bold text-charcoal mb-4 text-center">
+                      <h3 className="text-2xl font-heading font-bold text-cream mb-4 text-center uppercase tracking-widest">
                         {cert.name}
                       </h3>
 
                       {/* Issuing Body */}
                       {cert.issuingBody && (
-                        <p className="text-sm text-brown font-light text-center mb-4">
-                          <span className="font-bold">Issued by:</span> {cert.issuingBody}
+                        <p className="text-sm text-cream/70 font-light text-center mb-6">
+                          <span className="font-bold text-rust">ISSUED BY:</span> {cert.issuingBody}
                         </p>
                       )}
 
                       {/* Description */}
-                      <p className="text-charcoal font-light leading-relaxed mb-6 text-center">
+                      <p className="text-cream/80 font-light leading-relaxed mb-8 text-center">
                         {cert.description}
                       </p>
 
                       {/* Date Issued */}
                       {cert.dateIssued && (
-                        <p className="text-sm text-brown/70 font-light text-center mb-6">
+                        <p className="text-xs text-cream/60 font-light text-center mb-8 uppercase tracking-widest">
                           Date Issued: {new Date(cert.dateIssued).toLocaleDateString()}
                         </p>
                       )}
@@ -167,16 +167,16 @@ export default function CertificationsPage() {
                       {/* Link */}
                       {cert.certificationUrl && (
                         <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.98 }}
+                          whileHover={{ scale: 1.04 }}
+                          whileTap={{ scale: 0.96 }}
                           transition={{ duration: 0.2 }}
                         >
                           <Button 
                             asChild
-                            className="w-full bg-copper hover:bg-copper-light text-white uppercase tracking-wider font-bold"
+                            className="w-full bg-rust hover:bg-rust-light text-cream uppercase tracking-widest font-bold shadow-heavy hover:shadow-heavy-lg"
                           >
                             <a href={cert.certificationUrl} target="_blank" rel="noopener noreferrer">
-                              View Certificate
+                              VIEW CERTIFICATE
                             </a>
                           </Button>
                         </motion.div>
@@ -192,7 +192,7 @@ export default function CertificationsPage() {
 
       {/* Why Certifications Matter */}
       <motion.section 
-        className="py-24 bg-white"
+        className="py-32 bg-charcoal grain-overlay"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -200,28 +200,28 @@ export default function CertificationsPage() {
       >
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
-            className="text-center mb-20"
+            className="mb-24"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
           >
             <motion.h2 
-              className="text-5xl md:text-6xl font-heading font-bold text-charcoal mb-4"
+              className="text-6xl md:text-7xl font-heading font-bold text-cream mb-8 uppercase"
               variants={itemVariants}
             >
-              Why Certifications Matter
+              WHY CERTIFICATIONS MATTER
             </motion.h2>
             <motion.p 
-              className="text-lg text-brown font-light max-w-2xl mx-auto"
+              className="text-xl text-cream/70 font-light max-w-2xl"
               variants={itemVariants}
             >
-              Our certifications ensure transparency, quality, and commitment to sustainable practices
+              Authority. Verification. Trust.
             </motion.p>
           </motion.div>
 
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-3 gap-16"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -230,38 +230,38 @@ export default function CertificationsPage() {
             {[
               {
                 icon: CheckCircle,
-                title: 'Quality Assurance',
+                title: 'QUALITY ASSURANCE',
                 description: 'Every certification represents rigorous testing and compliance with international standards for food safety and organic farming practices.'
               },
               {
                 icon: Award,
-                title: 'Industry Recognition',
+                title: 'INDUSTRY RECOGNITION',
                 description: 'Our certifications are recognized by leading agricultural and environmental organizations, ensuring credibility and trust.'
               },
               {
                 icon: Shield,
-                title: 'Consumer Protection',
+                title: 'CONSUMER PROTECTION',
                 description: 'These certifications protect you by guaranteeing that our products meet strict requirements for purity, safety, and sustainability.'
               }
             ].map((item, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{ y: -8 }}
+                whileHover={{ y: -12 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="text-center">
+                <div>
                   <motion.div 
-                    className="w-20 h-20 bg-gradient-to-br from-copper/20 to-burnt-orange/20 rounded-full flex items-center justify-center mx-auto mb-6"
-                    whileHover={{ scale: 1.15, rotate: 8 }}
+                    className="w-20 h-20 bg-rust/20 rounded-lg flex items-center justify-center mb-8"
+                    whileHover={{ scale: 1.2, rotate: 12 }}
                     transition={{ type: 'spring', stiffness: 300, damping: 10 }}
                   >
-                    <item.icon className="h-10 w-10 text-copper" />
+                    <item.icon className="h-10 w-10 text-rust" />
                   </motion.div>
-                  <h3 className="text-2xl font-heading font-bold text-charcoal mb-3">
+                  <h3 className="text-2xl font-heading font-bold text-cream mb-4 uppercase tracking-widest">
                     {item.title}
                   </h3>
-                  <p className="text-brown font-light leading-relaxed">
+                  <p className="text-cream/70 font-light leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -273,7 +273,7 @@ export default function CertificationsPage() {
 
       {/* Our Commitment */}
       <motion.section 
-        className="py-24 bg-sand-lighter"
+        className="py-32 bg-black"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -288,51 +288,51 @@ export default function CertificationsPage() {
             viewport={{ once: true, margin: '-100px' }}
           >
             <motion.h2 
-              className="text-5xl md:text-6xl font-heading font-bold text-charcoal mb-8"
+              className="text-6xl md:text-7xl font-heading font-bold text-cream mb-12 uppercase"
               variants={itemVariants}
             >
-              Our Commitment to Excellence
+              OUR COMMITMENT
             </motion.h2>
 
             <motion.div 
-              className="space-y-6 mb-12"
+              className="space-y-8 mb-16"
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-100px' }}
             >
               <motion.p
-                className="text-lg text-charcoal font-light leading-relaxed"
+                className="text-xl text-cream/80 font-light leading-relaxed"
                 variants={itemVariants}
               >
-                At ARAMBA, we believe that transparency and accountability are fundamental to building trust with our customers. Our certifications are not just badges—they represent our unwavering commitment to delivering the highest quality organic produce while maintaining the highest standards of environmental stewardship.
+                At ARAMBA, we believe that transparency and accountability are fundamental to building trust. Our certifications are not just badges—they represent our unwavering commitment to delivering the highest quality organic produce while maintaining the highest standards of environmental stewardship.
               </motion.p>
 
               <motion.p
-                className="text-lg text-charcoal font-light leading-relaxed"
+                className="text-xl text-cream/80 font-light leading-relaxed"
                 variants={itemVariants}
               >
                 We continuously invest in improving our farming practices, implementing cutting-edge sustainable techniques, and maintaining rigorous quality control measures. Every certification we hold is a testament to our dedication to your health and the health of our planet.
               </motion.p>
 
               <motion.p
-                className="text-lg text-charcoal font-light leading-relaxed"
+                className="text-xl text-cream/80 font-light leading-relaxed"
                 variants={itemVariants}
               >
-                When you choose ARAMBA, you're choosing products backed by verified certifications, transparent practices, and a genuine commitment to excellence. We're proud to be a trusted partner in your journey toward healthier, more sustainable living.
+                When you choose ARAMBA, you're choosing products backed by verified certifications, transparent practices, and a genuine commitment to excellence. We're not just growing food—we're building a movement toward real, sustainable agriculture.
               </motion.p>
             </motion.div>
 
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.96 }}
               transition={{ duration: 0.2 }}
             >
               <Button 
                 asChild 
-                className="bg-copper hover:bg-copper-light text-white uppercase tracking-wider font-bold shadow-lg hover:shadow-xl"
+                className="bg-rust hover:bg-rust-light text-cream uppercase tracking-widest font-bold shadow-heavy hover:shadow-heavy-lg px-12 py-7"
               >
-                <Link to="/">Shop Our Products</Link>
+                <Link to="/">SHOP OUR PRODUCTS</Link>
               </Button>
             </motion.div>
           </motion.div>
@@ -341,7 +341,7 @@ export default function CertificationsPage() {
 
       {/* CTA Section */}
       <motion.section 
-        className="py-20 bg-gradient-to-br from-charcoal via-charcoal-dark to-brown-dark text-sand grain-overlay"
+        className="py-24 bg-charcoal grain-overlay border-t-2 border-rust/30"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -349,33 +349,33 @@ export default function CertificationsPage() {
       >
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.h2 
-            className="text-4xl md:text-5xl font-heading font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-5xl md:text-6xl font-heading font-bold text-cream mb-8 uppercase"
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            Ready to Experience Certified Quality?
+            READY FOR CERTIFIED QUALITY?
           </motion.h2>
           <motion.p 
-            className="text-lg text-sand/80 mb-10 font-light max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-xl text-cream/80 mb-12 font-light max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            Explore our full range of certified organic products and join thousands of families choosing quality and sustainability
+            Explore our full range of certified organic products and join thousands of families choosing quality and sustainability.
           </motion.p>
           <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.96 }}
             transition={{ duration: 0.2 }}
           >
             <Button 
               asChild 
-              className="bg-copper hover:bg-copper-light text-white text-lg font-heading py-6 uppercase tracking-wider shadow-lg hover:shadow-xl"
+              className="bg-rust hover:bg-rust-light text-cream text-lg font-heading py-7 uppercase tracking-widest shadow-heavy hover:shadow-heavy-lg"
             >
-              <Link to="/store">Shop Now</Link>
+              <Link to="/store">SHOP NOW</Link>
             </Button>
           </motion.div>
         </div>

@@ -14,28 +14,28 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
+      staggerChildren: 0.1,
       delayChildren: 0.2,
     },
   },
-} as const;
+};
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: 'easeOut' as const },
+    transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 } as const;
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  hidden: { opacity: 0, y: 50, scale: 0.9 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.6, ease: 'easeOut' as const },
+    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 } as const;
 
@@ -63,10 +63,10 @@ export default function BlogPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-sand-lighter">
+    <div className="min-h-screen bg-black">
       {/* Hero Section */}
       <motion.section 
-        className="py-20 bg-gradient-to-br from-charcoal via-charcoal-dark to-brown-dark text-sand grain-overlay"
+        className="py-24 bg-charcoal grain-overlay border-b-2 border-rust/30"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -79,16 +79,16 @@ export default function BlogPage() {
             animate="visible"
           >
             <motion.h1 
-              className="text-6xl md:text-7xl font-heading font-bold text-sand mb-6"
+              className="text-7xl md:text-8xl lg:text-9xl font-heading font-bold text-cream mb-8 uppercase"
               variants={itemVariants}
             >
-              ARAMBA Blog
+              ARAMBA BLOG
             </motion.h1>
             <motion.p 
-              className="text-xl text-sand/80 font-light max-w-2xl mx-auto"
+              className="text-2xl text-cream/80 font-light max-w-3xl mx-auto"
               variants={itemVariants}
             >
-              Stories, tips, and insights about organic farming, sustainable living, and healthy eating
+              Stories, insights, and knowledge about organic farming, sustainable living, and real food.
             </motion.p>
           </motion.div>
         </div>
@@ -96,7 +96,7 @@ export default function BlogPage() {
 
       {/* Blog Posts Grid */}
       <motion.section 
-        className="py-24 bg-sand-lighter"
+        className="py-32 bg-black"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -104,16 +104,16 @@ export default function BlogPage() {
       >
         <div className="max-w-7xl mx-auto px-6">
           {loading ? (
-            <div className="text-center py-12">
-              <p className="text-charcoal font-light">Loading blog posts...</p>
+            <div className="text-center py-20">
+              <p className="text-cream/70 font-light text-lg">Loading blog posts...</p>
             </div>
           ) : posts.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-charcoal font-light text-lg">No blog posts yet. Check back soon!</p>
+            <div className="text-center py-20">
+              <p className="text-cream/70 font-light text-lg">No blog posts yet. Check back soon!</p>
             </div>
           ) : (
             <motion.div 
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12"
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
@@ -123,17 +123,17 @@ export default function BlogPage() {
                 <motion.div
                   key={post._id}
                   variants={cardVariants}
-                  whileHover={{ y: -12, boxShadow: '0 20px 40px rgba(193, 122, 74, 0.15)' }}
-                  transition={{ duration: 0.3 }}
+                  whileHover={{ y: -16, boxShadow: '0 40px 80px rgba(212, 102, 58, 0.3)' }}
+                  transition={{ duration: 0.4 }}
                 >
                   <Link to={`/blog/${post.slug}`}>
-                    <Card className="h-full overflow-hidden border-2 border-brown/20 hover:border-copper transition-all duration-300 cursor-pointer bg-white">
+                    <Card className="h-full overflow-hidden border-0 bg-charcoal-light hover:bg-charcoal-light/80 transition-all duration-300 cursor-pointer shadow-heavy hover:shadow-heavy-lg">
                       <CardContent className="p-0">
                         {/* Featured Image */}
                         <motion.div 
-                          className="relative h-48 overflow-hidden bg-brown/5"
-                          whileHover={{ scale: 1.08 }}
-                          transition={{ duration: 0.4 }}
+                          className="relative h-56 overflow-hidden bg-charcoal"
+                          whileHover={{ scale: 1.12 }}
+                          transition={{ duration: 0.5 }}
                         >
                           <Image
                             src={post.featuredImage || 'https://via.placeholder.com/400x300?text=Blog'}
@@ -144,17 +144,17 @@ export default function BlogPage() {
                         </motion.div>
 
                         {/* Content */}
-                        <div className="p-6">
+                        <div className="p-8">
                           {/* Meta Info */}
-                          <div className="flex items-center gap-4 text-xs text-brown/70 font-light mb-4 uppercase tracking-wider">
+                          <div className="flex items-center gap-6 text-xs text-cream/60 font-light mb-6 uppercase tracking-widest">
                             {post.publishDate && (
-                              <div className="flex items-center gap-1">
+                              <div className="flex items-center gap-2">
                                 <Calendar className="h-4 w-4" />
                                 {format(new Date(post.publishDate), 'MMM dd, yyyy')}
                               </div>
                             )}
                             {post.author && (
-                              <div className="flex items-center gap-1">
+                              <div className="flex items-center gap-2">
                                 <User className="h-4 w-4" />
                                 {post.author}
                               </div>
@@ -162,27 +162,27 @@ export default function BlogPage() {
                           </div>
 
                           {/* Title */}
-                          <h3 className="text-xl font-heading font-bold text-charcoal mb-3 line-clamp-2 hover:text-copper transition-colors">
+                          <h3 className="text-2xl font-heading font-bold text-cream mb-4 line-clamp-2 hover:text-rust transition-colors uppercase">
                             {post.title}
                           </h3>
 
                           {/* Excerpt */}
-                          <p className="text-charcoal font-light text-sm line-clamp-3 mb-6">
+                          <p className="text-cream/70 font-light text-sm line-clamp-3 mb-8">
                             {post.excerpt}
                           </p>
 
                           {/* Read More Button */}
                           <motion.div
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
+                            whileHover={{ scale: 1.04 }}
+                            whileTap={{ scale: 0.96 }}
                             transition={{ duration: 0.2 }}
                           >
                             <Button 
                               variant="outline" 
-                              className="border-2 border-copper text-copper hover:bg-copper hover:text-white w-full uppercase tracking-wider font-bold"
+                              className="border-2 border-rust text-rust hover:bg-rust hover:text-cream w-full uppercase tracking-widest font-bold"
                             >
-                              Read More
-                              <ArrowRight className="ml-2 h-4 w-4" />
+                              READ MORE
+                              <ArrowRight className="ml-3 h-4 w-4" />
                             </Button>
                           </motion.div>
                         </div>
@@ -198,7 +198,7 @@ export default function BlogPage() {
 
       {/* CTA Section */}
       <motion.section 
-        className="py-20 bg-gradient-to-br from-charcoal via-charcoal-dark to-brown-dark text-sand grain-overlay"
+        className="py-24 bg-charcoal grain-overlay border-t-2 border-rust/30"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -206,33 +206,33 @@ export default function BlogPage() {
       >
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.h2 
-            className="text-4xl md:text-5xl font-heading font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-5xl md:text-6xl font-heading font-bold text-cream mb-8 uppercase"
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            Ready to Shop Organic?
+            READY TO SHOP ORGANIC?
           </motion.h2>
           <motion.p 
-            className="text-lg text-sand/80 mb-10 font-light max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-xl text-cream/80 mb-12 font-light max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            Explore our fresh, chemical-free produce and support sustainable farming
+            Explore our fresh, chemical-free produce and support sustainable farming.
           </motion.p>
           <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.96 }}
             transition={{ duration: 0.2 }}
           >
             <Button 
               asChild 
-              className="bg-copper hover:bg-copper-light text-white text-lg font-heading py-6 uppercase tracking-wider shadow-lg hover:shadow-xl"
+              className="bg-rust hover:bg-rust-light text-cream text-lg font-heading py-7 uppercase tracking-widest shadow-heavy hover:shadow-heavy-lg"
             >
-              <Link to="/store">Shop Now</Link>
+              <Link to="/store">SHOP NOW</Link>
             </Button>
           </motion.div>
         </div>
