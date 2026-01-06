@@ -1,191 +1,156 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { MessageCircle, LogIn, Menu, X } from 'lucide-react';
-import { MiniCart } from '@/wix-verticals/react-pages/react-router/routes/root';
-import { Button } from '@/components/ui/button';
-import { useAuthStore } from '@/stores/authStore';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useLocation } from 'react-router-dom';
+import { ShoppingCart, Menu, X } from 'lucide-react';
+import { useMember } from '@/integrations';
 
 export default function Header() {
-  const { isAuthenticated, userRole } = useAuthStore();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const { isAuthenticated, actions } = useMember();
 
-  const handleWhatsAppClick = () => {
-    const message = encodeURIComponent("Hi! I'm interested in ARAMBA organic products. Can you help me?");
-    window.open(`https://wa.me/919666277729?text=${message}`, '_blank');
+  const isActive = (path: string) => {
+    return location.pathname === path ? 'border-b-2 border-primary text-primary' : 'text-dark-gray hover:text-primary';
   };
 
-  const navLinks = [
-    { label: 'HOME', href: '/' },
-    { label: 'ABOUT US', href: '/#about' },
-    { label: 'BLOG', href: '/blog' },
-    { label: 'CERTIFICATIONS', href: '/certifications' },
-    { label: 'CONTACT', href: '/contact' },
-  ];
-
   return (
-    <header className="sticky top-0 z-50 bg-black border-b-2 border-rust/30 shadow-heavy grain-overlay">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-between h-24">
+    <header className="sticky top-0 z-50 bg-white border-b border-border-gray shadow-sm">
+      <div className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.08 }}
-            transition={{ duration: 0.2 }}
-          >
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="text-4xl font-heading font-bold text-cream uppercase tracking-widest">
-                ARAMBA
-              </div>
-            </Link>
-          </motion.div>
+          <Link to="/" className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-lg">A</span>
+            </div>
+            <span className="font-heading font-bold text-lg text-dark-gray hidden sm:inline">ARAMBA</span>
+          </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-12">
-            {navLinks.map((link) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                className="text-cream hover:text-rust transition-colors font-bold text-sm uppercase tracking-widest"
-                whileHover={{ y: -3 }}
-                transition={{ duration: 0.2 }}
-              >
-                {link.label}
-              </motion.a>
-            ))}
+          <nav className="hidden md:flex items-center gap-8">
+            <Link to="/" className={`text-sm font-medium transition-colors ${isActive('/')}`}>
+              Home
+            </Link>
+            <Link to="/blog" className={`text-sm font-medium transition-colors ${isActive('/blog')}`}>
+              Blog
+            </Link>
+            <Link to="/certifications" className={`text-sm font-medium transition-colors ${isActive('/certifications')}`}>
+              Certifications
+            </Link>
+            <Link to="/contact" className={`text-sm font-medium transition-colors ${isActive('/contact')}`}>
+              Contact
+            </Link>
+            <a
+              href="https://wa.me/1234567890"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-primary hover:text-organic-green-light transition-colors"
+            >
+              WhatsApp
+            </a>
           </nav>
 
-          {/* Right Actions */}
-          <div className="flex items-center gap-4 lg:gap-6">
-            {/* WhatsApp Button */}
-            <motion.div
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.96 }}
-              transition={{ duration: 0.2 }}
-              className="hidden sm:block relative"
+          {/* Right Side Actions */}
+          <div className="flex items-center gap-4">
+            {!isAuthenticated ? (
+              <button
+                onClick={actions.login}
+                className="hidden sm:inline-block text-sm font-medium text-primary hover:text-organic-green-light transition-colors"
+              >
+                Login
+              </button>
+            ) : (
+              <button
+                onClick={actions.logout}
+                className="hidden sm:inline-block text-sm font-medium text-primary hover:text-organic-green-light transition-colors"
+              >
+                Logout
+              </button>
+            )}
+
+            {/* Cart Icon */}
+            <Link
+              to="/cart"
+              className="relative p-2 text-dark-gray hover:text-primary transition-colors"
             >
-              <motion.div
-                className="absolute inset-0 bg-rust/20 rounded-lg blur-lg"
-                animate={{ opacity: [0.3, 0.5, 0.3] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              />
-              <Button
-                onClick={handleWhatsAppClick}
-                className="relative bg-rust hover:bg-rust-light text-cream gap-2 uppercase tracking-widest font-bold shadow-heavy hover:shadow-heavy-lg"
-                size="sm"
-              >
-                <MessageCircle className="h-4 w-4" />
-                <span className="hidden md:inline">WHATSAPP</span>
-              </Button>
-            </motion.div>
-
-            {/* Login Button */}
-            {!isAuthenticated && (
-              <motion.div
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.96 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Button
-                  asChild
-                  className="hidden sm:flex bg-rust hover:bg-rust-light text-cream gap-2 uppercase tracking-widest font-bold shadow-heavy hover:shadow-heavy-lg"
-                  size="sm"
-                >
-                  <Link to="/login">
-                    <LogIn className="h-4 w-4" />
-                    <span className="hidden md:inline">LOGIN</span>
-                  </Link>
-                </Button>
-              </motion.div>
-            )}
-
-            {/* Dashboard Link */}
-            {isAuthenticated && userRole && (
-              <motion.div
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.96 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Button
-                  asChild
-                  variant="outline"
-                  className="hidden sm:flex border-2 border-rust text-rust hover:bg-rust hover:text-cream uppercase tracking-widest font-bold"
-                  size="sm"
-                >
-                  <Link to={`/dashboard/${userRole}`}>DASHBOARD</Link>
-                </Button>
-              </motion.div>
-            )}
-
-            {/* Mini Cart */}
-            <MiniCart />
+              <ShoppingCart size={20} />
+              <span className="absolute top-1 right-1 w-4 h-4 bg-primary text-white text-xs rounded-full flex items-center justify-center">
+                0
+              </span>
+            </Link>
 
             {/* Mobile Menu Button */}
-            <motion.button
+            <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden text-cream hover:text-rust transition-colors"
-              aria-label="Toggle menu"
-              whileHover={{ scale: 1.15 }}
-              whileTap={{ scale: 0.95 }}
+              className="md:hidden p-2 text-dark-gray hover:text-primary transition-colors"
             >
-              {mobileMenuOpen ? (
-                <X className="h-7 w-7" />
-              ) : (
-                <Menu className="h-7 w-7" />
-              )}
-            </motion.button>
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="lg:hidden border-t-2 border-rust/30 bg-charcoal"
-            >
-              <nav className="py-6 space-y-3">
-                {navLinks.map((link) => (
-                  <motion.a
-                    key={link.label}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block px-6 py-3 text-cream hover:bg-rust/20 hover:text-rust transition-colors font-bold uppercase tracking-widest"
-                    whileHover={{ x: 6 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {link.label}
-                  </motion.a>
-                ))}
-                <div className="border-t-2 border-rust/30 pt-3 mt-3 space-y-3">
-                  <motion.button
-                    onClick={() => {
-                      handleWhatsAppClick();
-                      setMobileMenuOpen(false);
-                    }}
-                    className="w-full text-left px-6 py-3 text-rust hover:bg-rust/20 transition-colors font-bold uppercase tracking-widest flex items-center gap-3"
-                    whileHover={{ x: 6 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <MessageCircle className="h-5 w-5" />
-                    WHATSAPP
-                  </motion.button>
-                  {!isAuthenticated && (
-                    <Link
-                      to="/login"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="block px-6 py-3 text-rust hover:bg-rust/20 transition-colors font-bold uppercase tracking-widest"
-                    >
-                      LOGIN
-                    </Link>
-                  )}
-                </div>
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Mobile Navigation */}
+        {mobileMenuOpen && (
+          <nav className="md:hidden pb-4 border-t border-border-gray">
+            <div className="flex flex-col gap-3 pt-4">
+              <Link
+                to="/"
+                className="text-sm font-medium text-dark-gray hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Home
+              </Link>
+              <Link
+                to="/blog"
+                className="text-sm font-medium text-dark-gray hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Blog
+              </Link>
+              <Link
+                to="/certifications"
+                className="text-sm font-medium text-dark-gray hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Certifications
+              </Link>
+              <Link
+                to="/contact"
+                className="text-sm font-medium text-dark-gray hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
+              </Link>
+              <a
+                href="https://wa.me/1234567890"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium text-primary hover:text-organic-green-light transition-colors"
+              >
+                WhatsApp
+              </a>
+              {!isAuthenticated ? (
+                <button
+                  onClick={() => {
+                    actions.login();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="text-sm font-medium text-primary hover:text-organic-green-light transition-colors text-left"
+                >
+                  Login
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    actions.logout();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="text-sm font-medium text-primary hover:text-organic-green-light transition-colors text-left"
+                >
+                  Logout
+                </button>
+              )}
+            </div>
+          </nav>
+        )}
       </div>
     </header>
   );

@@ -5,16 +5,6 @@ import ErrorPage from '@/integrations/errorHandlers/ErrorPage';
 
 // Import route components and loaders
 import { rootRouteLoader, WixServicesProvider } from '@/wix-verticals/react-pages/react-router/routes/root';
-import {
-  ProductDetailsRoute,
-  productRouteLoader,
-} from '@/wix-verticals/react-pages/react-router/routes/product-details';
-import {
-  StoreCollectionRoute,
-  storeCollectionRouteLoader,
-} from '@/wix-verticals/react-pages/react-router/routes/store-collection';
-import { defaultStoreCollectionRouteRedirectLoader } from '@/wix-verticals/react-pages/react-router/routes/store-redirect';
-import { Cart } from '@/wix-verticals/react-pages/react-router/routes/cart';
 
 // Import page components
 import HomePage from '@/components/pages/HomePage';
@@ -26,6 +16,7 @@ import LoginPage from '@/components/pages/LoginPage';
 import CustomerDashboardPage from '@/components/pages/CustomerDashboardPage';
 import FarmerDashboardPage from '@/components/pages/FarmerDashboardPage';
 import AdminDashboardPage from '@/components/pages/AdminDashboardPage';
+import ProductDetailsPage from '@/components/pages/ProductDetailsPage';
 import Layout from '@/components/Layout';
 
 // Main layout component that includes the scroll to top component and the layout component
@@ -54,45 +45,8 @@ const router = createBrowserRouter([
         element: <ContactPage />,
       },
       {
-        path: '/products/:slug',
-        element: (
-          <div className="min-h-screen bg-background">
-            <div className="max-w-[120rem] mx-auto px-6 py-8">
-              <h1 className="text-3xl font-heading font-semibold text-primary mb-6">Product Details</h1>
-              <ProductDetailsRoute />
-            </div>
-          </div>
-        ),
-        loader: productRouteLoader,
-      },
-      {
-        path: '/store',
-        element: <></>,
-        loader: defaultStoreCollectionRouteRedirectLoader,
-        index: true,
-      },
-      {
-        path: '/store/:categorySlug',
-        element: (
-          <div className="min-h-screen bg-background">
-            <div className="max-w-[120rem] mx-auto px-6 py-8">
-              <h1 className="text-3xl font-heading font-semibold text-primary mb-6">Shop by Category</h1>
-              <StoreCollectionRoute productPageRoute="/products" />
-            </div>
-          </div>
-        ),
-        loader: storeCollectionRouteLoader,
-      },
-      {
-        path: '/cart',
-        element: (
-          <div className="min-h-screen bg-background">
-            <div className="max-w-[120rem] mx-auto px-6 py-8">
-              <h1 className="text-3xl font-heading font-semibold text-primary mb-6">Shopping Cart</h1>
-              <Cart />
-            </div>
-          </div>
-        ),
+        path: '/products/:productId',
+        element: <ProductDetailsPage />,
       },
       {
         path: '/blog',

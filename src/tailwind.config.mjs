@@ -19,33 +19,30 @@ export default {
                 '9xl': ['8rem', { lineHeight: '1', letterSpacing: '-0.025em', fontWeight: '700' }],
             },
             fontFamily: {
-                heading: "'Bebas Neue', 'Oswald', sans-serif",
+                heading: "'Inter', 'Segoe UI', sans-serif",
                 paragraph: "'Inter', 'Segoe UI', sans-serif"
             },
             colors: {
-                // Bold, masculine, high-contrast palette
-                black: '#0a0a0a',
-                'charcoal': '#1a1a1a',
-                'charcoal-light': '#2d2d2d',
-                'clay': '#c85a3a',
-                'clay-dark': '#a84a2a',
-                'rust': '#d4663a',
-                'rust-light': '#e07a4a',
-                'gold': '#b8a86a',
-                'gold-dark': '#8b7a4a',
-                'cream': '#f5f1e8',
-                'cream-light': '#faf8f4',
-                'olive': '#4a4a3a',
-                'olive-dark': '#3a3a2a',
+                // Organic food e-commerce palette
+                'organic-green': '#2d7a3e',
+                'organic-green-light': '#4a9d5a',
+                'organic-green-lighter': '#e8f3eb',
+                'soil-brown': '#8b6f47',
+                'soil-brown-light': '#a88a5f',
+                'cream': '#f9f7f3',
+                'cream-dark': '#f0ede7',
+                'dark-gray': '#2c2c2c',
+                'light-gray': '#f5f5f5',
+                'border-gray': '#e0e0e0',
                 
                 // Semantic colors
-                destructive: '#d4663a',
+                destructive: '#dc2626',
                 'destructive-foreground': '#ffffff',
-                background: '#0a0a0a',
-                secondary: '#c85a3a',
+                background: '#ffffff',
+                secondary: '#8b6f47',
                 'secondary-foreground': '#ffffff',
-                'primary-foreground': '#f5f1e8',
-                primary: '#0a0a0a'
+                'primary-foreground': '#ffffff',
+                primary: '#2d7a3e'
             },
         },
     },

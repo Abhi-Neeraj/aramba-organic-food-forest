@@ -1,215 +1,160 @@
-import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { useAuthStore } from '@/stores/authStore';
+import { ShoppingBag, Heart, Truck, Settings } from 'lucide-react';
 import { useMember } from '@/integrations';
-import { ShoppingBag, Heart, Package, LogOut } from 'lucide-react';
+import { MemberProtectedRoute } from '@/components/ui/member-protected-route';
 
-export default function CustomerDashboardPage() {
-  const navigate = useNavigate();
-  const { userRole, memberId, clearAuth } = useAuthStore();
-  const { member, actions } = useMember();
+function CustomerDashboardContent() {
+  const { member } = useMember();
 
-  useEffect(() => {
-    // Check if user is authenticated and has customer role
-    if (userRole === null) {
-      // User not authenticated, redirect to login
-      navigate('/login', { replace: true });
-    } else if (userRole !== 'customer') {
-      // User authenticated but wrong role, redirect to their dashboard
-      navigate(`/dashboard/${userRole}`, { replace: true });
-    }
-  }, [userRole, navigate]);
-
-  const handleLogout = async () => {
-    clearAuth();
-    await actions.logout();
-    navigate('/');
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 },
+  const stats = [
+    {
+      icon: ShoppingBag,
+      label: 'Total Orders',
+      value: '12',
+      color: 'bg-blue-50 text-blue-600',
     },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.3 },
+    {
+      icon: Heart,
+      label: 'Wishlist Items',
+      value: '8',
+      color: 'bg-red-50 text-red-600',
     },
-  };
+    {
+      icon: Truck,
+      label: 'In Transit',
+      value: '2',
+      color: 'bg-green-50 text-green-600',
+    },
+    {
+      icon: Settings,
+      label: 'Account',
+      value: 'Active',
+      color: 'bg-purple-50 text-purple-600',
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-background py-12 px-4">
-      <motion.div
-        className="max-w-6xl mx-auto"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-4xl font-heading font-bold text-primary mb-2">Customer Dashboard</h1>
-            <p className="text-primary/70 font-paragraph">
-              Welcome, {member?.profile?.nickname || 'Customer'}!
-            </p>
-          </div>
-          <Button
-            onClick={handleLogout}
-            variant="outline"
-            className="border-primary/20 text-primary hover:bg-primary/5"
+    <div className="bg-white">
+      {/* Header */}
+      <section className="bg-gradient-to-br from-organic-green-lighter to-white py-12 sm:py-16">
+        <div className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            <LogOut className="h-4 w-4 mr-2" />
-            Logout
-          </Button>
-        </div>
-
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <motion.div variants={itemVariants}>
-            <Card className="border-primary/20">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-paragraph text-primary/70">Total Orders</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold text-primary">0</div>
-                <p className="text-xs text-primary/60 mt-1">No orders yet</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div variants={itemVariants}>
-            <Card className="border-secondary/20">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-paragraph text-secondary/70">Wishlist Items</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold text-secondary">0</div>
-                <p className="text-xs text-secondary/60 mt-1">Save items for later</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div variants={itemVariants}>
-            <Card className="border-terracotta/20">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-paragraph text-terracotta/70">Account Status</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-lg font-bold text-terracotta">Active</div>
-                <p className="text-xs text-terracotta/60 mt-1">Member ID: {memberId?.slice(0, 8)}...</p>
-              </CardContent>
-            </Card>
+            <h1 className="font-heading text-4xl sm:text-5xl font-bold text-dark-gray mb-2">
+              Welcome, {member?.profile?.nickname || 'Customer'}!
+            </h1>
+            <p className="text-lg text-dark-gray opacity-90">
+              Manage your orders, wishlist, and account settings
+            </p>
           </motion.div>
         </div>
+      </section>
 
-        {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column - Actions */}
-          <div className="lg:col-span-2 space-y-6">
-            <motion.div variants={itemVariants}>
-              <Card className="border-primary/20">
-                <CardHeader>
-                  <CardTitle className="font-heading text-primary">Start Shopping</CardTitle>
-                  <CardDescription className="font-paragraph">
-                    Browse our organic products
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Button asChild className="w-full bg-primary hover:bg-primary/90">
-                    <Link to="/store">
-                      <ShoppingBag className="h-4 w-4 mr-2" />
-                      Browse Products
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
+      {/* Stats */}
+      <section className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {stats.map((stat, index) => {
+            const Icon = stat.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white border border-border-gray rounded-lg p-6 hover:shadow-lg transition-shadow"
+              >
+                <div className={`w-12 h-12 rounded-lg ${stat.color} flex items-center justify-center mb-4`}>
+                  <Icon size={24} />
+                </div>
+                <p className="text-sm text-dark-gray opacity-75 mb-1">{stat.label}</p>
+                <p className="font-heading text-3xl font-bold text-dark-gray">{stat.value}</p>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
 
-            <motion.div variants={itemVariants}>
-              <Card className="border-primary/20">
-                <CardHeader>
-                  <CardTitle className="font-heading text-primary">Your Orders</CardTitle>
-                  <CardDescription className="font-paragraph">
-                    Track and manage your purchases
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Button asChild className="w-full bg-primary hover:bg-primary/90">
-                    <Link to="/customer/orders">
-                      <Package className="h-4 w-4 mr-2" />
-                      View All Orders
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
+      {/* Recent Orders */}
+      <section className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="font-heading text-2xl font-bold text-dark-gray mb-6">Recent Orders</h2>
 
-            <motion.div variants={itemVariants}>
-              <Card className="border-primary/20">
-                <CardHeader>
-                  <CardTitle className="font-heading text-primary">Wishlist</CardTitle>
-                  <CardDescription className="font-paragraph">
-                    Your saved items
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-center py-8">
-                    <Heart className="h-12 w-12 text-primary/30 mx-auto mb-3" />
-                    <p className="text-primary/60 font-paragraph mb-4">No items in wishlist</p>
-                    <Button asChild variant="outline" className="border-primary/20">
-                      <Link to="/store">Explore Products</Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+          <div className="bg-white border border-border-gray rounded-lg overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-light-gray border-b border-border-gray">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-dark-gray">Order ID</th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-dark-gray">Date</th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-dark-gray">Total</th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-dark-gray">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { id: '#ORD-001', date: 'Jan 15, 2024', total: '$45.99', status: 'Delivered' },
+                    { id: '#ORD-002', date: 'Jan 10, 2024', total: '$32.50', status: 'In Transit' },
+                    { id: '#ORD-003', date: 'Jan 05, 2024', total: '$28.75', status: 'Delivered' },
+                  ].map((order, index) => (
+                    <tr key={index} className="border-b border-border-gray hover:bg-light-gray transition-colors">
+                      <td className="px-6 py-4 text-sm text-dark-gray font-medium">{order.id}</td>
+                      <td className="px-6 py-4 text-sm text-dark-gray">{order.date}</td>
+                      <td className="px-6 py-4 text-sm text-dark-gray font-semibold">{order.total}</td>
+                      <td className="px-6 py-4 text-sm">
+                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                          order.status === 'Delivered'
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-blue-100 text-blue-700'
+                        }`}>
+                          {order.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
+        </motion.div>
+      </section>
 
-          {/* Right Column - Profile */}
-          <motion.div variants={itemVariants}>
-            <Card className="border-primary/20 sticky top-20">
-              <CardHeader>
-                <CardTitle className="font-heading text-primary">Account Information</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <p className="text-xs text-primary/60 font-paragraph uppercase">Email</p>
-                  <p className="text-sm text-primary font-paragraph">{member?.loginEmail || 'Not set'}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-primary/60 font-paragraph uppercase">Name</p>
-                  <p className="text-sm text-primary font-paragraph">
-                    {member?.contact?.firstName || 'Not set'} {member?.contact?.lastName || ''}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs text-primary/60 font-paragraph uppercase">Member Since</p>
-                  <p className="text-sm text-primary font-paragraph">
-                    {member?._createdDate
-                      ? new Date(member._createdDate).toLocaleDateString()
-                      : 'Just now'}
-                  </p>
-                </div>
-                <div className="pt-4 border-t border-primary/10">
-                  <Button asChild variant="outline" className="w-full border-primary/20">
-                    <Link to="/profile">Edit Profile</Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </div>
-      </motion.div>
+      {/* Quick Actions */}
+      <section className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="font-heading text-2xl font-bold text-dark-gray mb-6">Quick Actions</h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <button className="px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-organic-green-light transition-colors">
+              Continue Shopping
+            </button>
+            <button className="px-6 py-3 border border-primary text-primary font-medium rounded-lg hover:bg-organic-green-lighter transition-colors">
+              View Wishlist
+            </button>
+          </div>
+        </motion.div>
+      </section>
     </div>
+  );
+}
+
+export default function CustomerDashboardPage() {
+  return (
+    <MemberProtectedRoute messageToSignIn="Sign in to access your customer dashboard">
+      <CustomerDashboardContent />
+    </MemberProtectedRoute>
   );
 }

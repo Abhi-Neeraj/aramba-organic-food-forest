@@ -4,6 +4,36 @@
  */
 
 /**
+ * Collection ID: users
+ * Interface for Users
+ */
+export interface Users {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+}
+
+/**
+ * Collection ID: orders
+ * Interface for Orders
+ */
+export interface Orders {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+}
+
+/**
+ * Collection ID: members
+ * Interface for Members
+ */
+export interface Members {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+}
+
+/**
  * Collection ID: blogposts
  * Interface for BlogPosts
  */

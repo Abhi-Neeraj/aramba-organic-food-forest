@@ -1,247 +1,162 @@
-import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { useAuthStore } from '@/stores/authStore';
+import { TrendingUp, Package, Users, DollarSign } from 'lucide-react';
 import { useMember } from '@/integrations';
-import { Leaf, TrendingUp, Package, Users, LogOut, Plus } from 'lucide-react';
+import { MemberProtectedRoute } from '@/components/ui/member-protected-route';
 
-export default function FarmerDashboardPage() {
-  const navigate = useNavigate();
-  const { userRole, memberId, clearAuth } = useAuthStore();
-  const { member, actions } = useMember();
+function FarmerDashboardContent() {
+  const { member } = useMember();
 
-  useEffect(() => {
-    // Check if user is authenticated and has farmer role
-    if (userRole === null) {
-      // User not authenticated, redirect to login
-      navigate('/login', { replace: true });
-    } else if (userRole !== 'farmer') {
-      // User authenticated but wrong role, redirect to their dashboard
-      navigate(`/dashboard/${userRole}`, { replace: true });
-    }
-  }, [userRole, navigate]);
-
-  const handleLogout = async () => {
-    clearAuth();
-    await actions.logout();
-    navigate('/');
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 },
+  const stats = [
+    {
+      icon: TrendingUp,
+      label: 'Total Sales',
+      value: '$2,450',
+      color: 'bg-green-50 text-green-600',
     },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.3 },
+    {
+      icon: Package,
+      label: 'Products Listed',
+      value: '24',
+      color: 'bg-blue-50 text-blue-600',
     },
-  };
+    {
+      icon: Users,
+      label: 'Active Customers',
+      value: '156',
+      color: 'bg-purple-50 text-purple-600',
+    },
+    {
+      icon: DollarSign,
+      label: 'This Month',
+      value: '$890',
+      color: 'bg-yellow-50 text-yellow-600',
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-background py-12 px-4">
-      <motion.div
-        className="max-w-6xl mx-auto"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-4xl font-heading font-bold text-primary mb-2">Farmer Dashboard</h1>
-            <p className="text-primary/70 font-paragraph">
-              Welcome, {member?.profile?.nickname || 'Farmer'}!
-            </p>
-          </div>
-          <Button
-            onClick={handleLogout}
-            variant="outline"
-            className="border-primary/20 text-primary hover:bg-primary/5"
+    <div className="bg-white">
+      {/* Header */}
+      <section className="bg-gradient-to-br from-organic-green-lighter to-white py-12 sm:py-16">
+        <div className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            <LogOut className="h-4 w-4 mr-2" />
-            Logout
-          </Button>
-        </div>
-
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <motion.div variants={itemVariants}>
-            <Card className="border-primary/20">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-paragraph text-primary/70">Products Listed</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold text-primary">0</div>
-                <p className="text-xs text-primary/60 mt-1">Active listings</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div variants={itemVariants}>
-            <Card className="border-secondary/20">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-paragraph text-secondary/70">Total Sales</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold text-secondary">₹0</div>
-                <p className="text-xs text-secondary/60 mt-1">This month</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div variants={itemVariants}>
-            <Card className="border-terracotta/20">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-paragraph text-terracotta/70">Orders</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold text-terracotta">0</div>
-                <p className="text-xs text-terracotta/60 mt-1">Pending fulfillment</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div variants={itemVariants}>
-            <Card className="border-primary/20">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-paragraph text-primary/70">Rating</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold text-primary">—</div>
-                <p className="text-xs text-primary/60 mt-1">No reviews yet</p>
-              </CardContent>
-            </Card>
+            <h1 className="font-heading text-4xl sm:text-5xl font-bold text-dark-gray mb-2">
+              Welcome, {member?.profile?.nickname || 'Farmer'}!
+            </h1>
+            <p className="text-lg text-dark-gray opacity-90">
+              Manage your farm, products, and sales
+            </p>
           </motion.div>
         </div>
+      </section>
 
-        {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column - Actions */}
-          <div className="lg:col-span-2 space-y-6">
-            <motion.div variants={itemVariants}>
-              <Card className="border-primary/20">
-                <CardHeader>
-                  <CardTitle className="font-heading text-primary">Request New Product</CardTitle>
-                  <CardDescription className="font-paragraph">
-                    Request to list your organic products for sale
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Button asChild className="w-full bg-primary hover:bg-primary/90">
-                    <Link to="/farmer/product-requests">
-                      <Plus className="h-4 w-4 mr-2" />
-                      Submit Product Request
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
+      {/* Stats */}
+      <section className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {stats.map((stat, index) => {
+            const Icon = stat.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white border border-border-gray rounded-lg p-6 hover:shadow-lg transition-shadow"
+              >
+                <div className={`w-12 h-12 rounded-lg ${stat.color} flex items-center justify-center mb-4`}>
+                  <Icon size={24} />
+                </div>
+                <p className="text-sm text-dark-gray opacity-75 mb-1">{stat.label}</p>
+                <p className="font-heading text-3xl font-bold text-dark-gray">{stat.value}</p>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
 
-            <motion.div variants={itemVariants}>
-              <Card className="border-primary/20">
-                <CardHeader>
-                  <CardTitle className="font-heading text-primary">Product Availability</CardTitle>
-                  <CardDescription className="font-paragraph">
-                    Manage your product inventory and availability
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Button asChild className="w-full bg-primary hover:bg-primary/90">
-                    <Link to="/farmer/availability">
-                      <Plus className="h-4 w-4 mr-2" />
-                      Manage Availability
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
+      {/* Recent Orders */}
+      <section className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="font-heading text-2xl font-bold text-dark-gray mb-6">Recent Orders</h2>
 
-            <motion.div variants={itemVariants}>
-              <Card className="border-primary/20">
-                <CardHeader>
-                  <CardTitle className="font-heading text-primary">Order Fulfillment</CardTitle>
-                  <CardDescription className="font-paragraph">
-                    Confirm and fulfill customer orders
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Button asChild className="w-full bg-secondary hover:bg-secondary/90">
-                    <Link to="/farmer/orders">
-                      <Package className="h-4 w-4 mr-2" />
-                      View Orders
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
+          <div className="bg-white border border-border-gray rounded-lg overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-light-gray border-b border-border-gray">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-dark-gray">Order ID</th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-dark-gray">Customer</th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-dark-gray">Amount</th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-dark-gray">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { id: '#ORD-101', customer: 'John Doe', amount: '$125.50', status: 'Pending' },
+                    { id: '#ORD-102', customer: 'Jane Smith', amount: '$89.99', status: 'Shipped' },
+                    { id: '#ORD-103', customer: 'Bob Johnson', amount: '$156.75', status: 'Delivered' },
+                  ].map((order, index) => (
+                    <tr key={index} className="border-b border-border-gray hover:bg-light-gray transition-colors">
+                      <td className="px-6 py-4 text-sm text-dark-gray font-medium">{order.id}</td>
+                      <td className="px-6 py-4 text-sm text-dark-gray">{order.customer}</td>
+                      <td className="px-6 py-4 text-sm text-dark-gray font-semibold">{order.amount}</td>
+                      <td className="px-6 py-4 text-sm">
+                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                          order.status === 'Delivered'
+                            ? 'bg-green-100 text-green-700'
+                            : order.status === 'Shipped'
+                            ? 'bg-blue-100 text-blue-700'
+                            : 'bg-yellow-100 text-yellow-700'
+                        }`}>
+                          {order.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
+        </motion.div>
+      </section>
 
-          {/* Right Column - Profile & Resources */}
-          <div className="space-y-6">
-            <motion.div variants={itemVariants}>
-              <Card className="border-primary/20 sticky top-20">
-                <CardHeader>
-                  <CardTitle className="font-heading text-primary">Farm Information</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <p className="text-xs text-primary/60 font-paragraph uppercase">Farm Name</p>
-                    <p className="text-sm text-primary font-paragraph">Not set</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-primary/60 font-paragraph uppercase">Location</p>
-                    <p className="text-sm text-primary font-paragraph">Not set</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-primary/60 font-paragraph uppercase">Specialty</p>
-                    <p className="text-sm text-primary font-paragraph">Not set</p>
-                  </div>
-                  <div className="pt-4 border-t border-primary/10">
-                    <Button asChild variant="outline" className="w-full border-primary/20">
-                      <Link to="/profile">Edit Profile</Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+      {/* Quick Actions */}
+      <section className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="font-heading text-2xl font-bold text-dark-gray mb-6">Quick Actions</h2>
 
-            <motion.div variants={itemVariants}>
-              <Card className="border-secondary/20">
-                <CardHeader>
-                  <CardTitle className="font-heading text-secondary flex items-center gap-2">
-                    <Leaf className="h-5 w-5" />
-                    Resources
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  <Button variant="ghost" className="w-full justify-start text-primary hover:bg-primary/5">
-                    <Users className="h-4 w-4 mr-2" />
-                    Farmer Community
-                  </Button>
-                  <Button variant="ghost" className="w-full justify-start text-primary hover:bg-primary/5">
-                    <TrendingUp className="h-4 w-4 mr-2" />
-                    Sales Tips
-                  </Button>
-                  <Button variant="ghost" className="w-full justify-start text-primary hover:bg-primary/5">
-                    <Package className="h-4 w-4 mr-2" />
-                    Shipping Guide
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <button className="px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-organic-green-light transition-colors">
+              Add New Product
+            </button>
+            <button className="px-6 py-3 border border-primary text-primary font-medium rounded-lg hover:bg-organic-green-lighter transition-colors">
+              View Analytics
+            </button>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </section>
     </div>
+  );
+}
+
+export default function FarmerDashboardPage() {
+  return (
+    <MemberProtectedRoute messageToSignIn="Sign in to access your farmer dashboard">
+      <FarmerDashboardContent />
+    </MemberProtectedRoute>
   );
 }
