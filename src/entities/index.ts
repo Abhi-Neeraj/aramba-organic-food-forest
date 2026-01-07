@@ -4,36 +4,6 @@
  */
 
 /**
- * Collection ID: users
- * Interface for Users
- */
-export interface Users {
-  _id: string;
-  _createdDate?: Date;
-  _updatedDate?: Date;
-}
-
-/**
- * Collection ID: orders
- * Interface for Orders
- */
-export interface Orders {
-  _id: string;
-  _createdDate?: Date;
-  _updatedDate?: Date;
-}
-
-/**
- * Collection ID: members
- * Interface for Members
- */
-export interface Members {
-  _id: string;
-  _createdDate?: Date;
-  _updatedDate?: Date;
-}
-
-/**
  * Collection ID: blogposts
  * Interface for BlogPosts
  */
@@ -78,6 +48,17 @@ export interface Certifications {
   certificationUrl?: string;
   /** @wixFieldType date */
   dateIssued?: Date | string;
+}
+
+
+/**
+ * Collection ID: users
+ * Interface for Users
+ */
+export interface Users {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
 }
 
 
@@ -142,6 +123,17 @@ export interface DeliveryAgents {
 
 
 /**
+ * Collection ID: orders
+ * Interface for Orders
+ */
+export interface Orders {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+}
+
+
+/**
  * Collection ID: deliverytracking
  * Interface for DeliveryTracking
  */
@@ -190,6 +182,17 @@ export interface FarmerProfiles {
   specialty?: string;
   /** @wixFieldType text */
   location?: string;
+}
+
+
+/**
+ * Collection ID: members
+ * Interface for Members
+ */
+export interface Members {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
 }
 
 
