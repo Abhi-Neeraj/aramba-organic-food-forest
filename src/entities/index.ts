@@ -63,6 +63,28 @@ export interface Users {
 
 
 /**
+ * Collection ID: orders
+ * Interface for Orders
+ */
+export interface Orders {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+}
+
+
+/**
+ * Collection ID: members
+ * Interface for Members
+ */
+export interface Members {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+}
+
+
+/**
  * Collection ID: communityposts
  * Interface for CommunityPosts
  */
@@ -123,17 +145,6 @@ export interface DeliveryAgents {
 
 
 /**
- * Collection ID: orders
- * Interface for Orders
- */
-export interface Orders {
-  _id: string;
-  _createdDate?: Date;
-  _updatedDate?: Date;
-}
-
-
-/**
  * Collection ID: deliverytracking
  * Interface for DeliveryTracking
  */
@@ -182,17 +193,6 @@ export interface FarmerProfiles {
   specialty?: string;
   /** @wixFieldType text */
   location?: string;
-}
-
-
-/**
- * Collection ID: members
- * Interface for Members
- */
-export interface Members {
-  _id: string;
-  _createdDate?: Date;
-  _updatedDate?: Date;
 }
 
 
